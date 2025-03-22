@@ -39,10 +39,6 @@ After acquiring all three Orbs, X returns to the starting area, where Chronos' t
 3. Install necessary dependencies.
 4. Run the game in Unity Editor or build for your target platform.
 
-## Team Members
-- **7 Developers** (2 working remotely)
-- P-Seminar project of an **11th-grade high school class**
-
 ## Contribution & Feedback
 We welcome feedback and contributions! Please use [GitHub Issues](https://github.com/YourRepo/LOSTAGES/issues) to report bugs and suggestions.
 
