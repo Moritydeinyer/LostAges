@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Cainos.PixelArtTopDown_Basic
 {
-    //let camera follow target
     public class CameraFollow : MonoBehaviour
     {
         public Transform target;
-        public float lerpSpeed = 1.0f;
+        public float lerpSpeed = 2.0f;
+        public float teleportThreshold = 6.1f; // DEBUG sprint speed = 5.0f
 
         private Vector3 offset;
 
@@ -24,9 +24,15 @@ namespace Cainos.PixelArtTopDown_Basic
         private void Update()
         {
             if (target == null) return;
-
             targetPos = target.position + offset;
-            transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetPos) > teleportThreshold)
+            {
+                transform.position = targetPos; 
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            }
         }
 
     }

@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "LostAges.sln"
+    "dotnet.defaultSolution": "LostAges.sln",
+    "python.analysis.autoImportCompletions": true
 }

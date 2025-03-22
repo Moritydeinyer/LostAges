@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-//when something get into the alta, make the runes glow
 namespace Cainos.PixelArtTopDown_Basic
 {
 
@@ -14,6 +14,17 @@ namespace Cainos.PixelArtTopDown_Basic
         private Color curColor;
         private Color targetColor;
 
+        [Header("Target Data")]
+
+        public PropsAltar targetAltar;
+        public bool isTargetAltar = false;
+
+        [Header("Player Data")]
+
+        public Transform playerTransform;
+        public SpriteRenderer playerRenderer;
+        public SpriteRenderer playerShadow;
+        
         private void Awake()
         {
             targetColor = runes[0].color;
@@ -21,13 +32,34 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("enter");
             targetColor.a = 1.0f;
+            if (isTargetAltar == false) 
+            {
+                targetAltar.isTargetAltar = true;
+                Invoke("teleporter", 2);
+            }
+        }
+
+        public void teleporter() 
+        {
+            float x = GetComponent<SpriteRenderer>().transform.position.x - playerTransform.position.x;
+            float y = GetComponent<SpriteRenderer>().transform.position.y - playerTransform.position.y;
+
+            playerTransform.position = new Vector3(targetAltar.gameObject.transform.position.x - x, targetAltar.gameObject.transform.position.y - y, 0);
+
+            playerTransform.gameObject.layer = targetAltar.gameObject.layer;
+            playerRenderer.sortingLayerID = targetAltar.GetComponent<SpriteRenderer>().sortingLayerID;
+            playerShadow.sortingLayerID = targetAltar.GetComponent<SpriteRenderer>().sortingLayerID;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            Debug.Log("exit");
+            isTargetAltar = false;
             targetColor.a = 0.0f;
         }
+
 
         private void Update()
         {
