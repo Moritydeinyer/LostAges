@@ -428,6 +428,7 @@
 "Assets/Scripts/MinimapWaypointArrows.cs"
 "Assets/Scripts/storyManager.cs"
 "Assets/Scripts/TriggerPassthrough.cs"
+"Assets/Scripts/UnityMainThreadDispatcher.cs"
 "Assets/TopDown 2D RPG BE3/ReadMe/Scripts/ReadmeBE3.cs"
 -langversion:9.0
 /deterministic

@@ -21,9 +21,34 @@ using Unity.VisualScripting;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using Cainos.PixelArtTopDown_Basic;
-
+using System.Threading;
 using UnityEngine.AI;
 using System.Globalization;
+
+
+[System.Serializable]
+public class PayPalAuthResponse
+{
+    public string access_token;
+}
+[System.Serializable]
+public class PayPalPaymentResponse
+{
+    public string id;
+    public string intent;
+    public string state;
+    public string payer;
+    public string transactions;
+    public string description;
+    public string create_time;
+    public Link[] links;
+}
+[System.Serializable]
+public class Link
+{
+    public string href;
+    public string rel;
+}
 
 public class jsonGameData {
     public int id { get; set; }
@@ -168,8 +193,23 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Image switchPanel;
     private float fadeDuration = 1f;
 
+    [Header("In Game Purchase")]
+    private string clientId = "AeicGYEqqfkWNw0YFdpKwdRbx4oxVtjhrEgzqGfBieCBFN3SdgIhmigMWYbi_araIZl_XhaFQnhYVQgA";
+    private string secret = "EFLL258TS1NTUZsiOnSXUBBcCzX4GzoiWgH-i1B-mk0viG27TKZpW4rS0E6nnprRkJaEt5_Bh_zLuSjJ";
+    private string accessToken;
+    private HttpListener httpListener;
+    private Thread listenerThread;
+    private bool isListening = false;
+    [SerializeField] public TextMeshProUGUI statusText; // UI Text zur Anzeige des Status
+    [SerializeField] public Button buyButton; // Button zum Kaufen
+
+    private const string ITEM_NAME = "X";
+    private const string ITEM_PRICE = "10.00";
+    private const string CURRENCY = "USD";
+
     void Start()
     {
+        StartServer();
         savingText.enabled = false;
         StartCoroutine(SaveRoutine = AutoSave());
         FadeOut();
@@ -187,6 +227,7 @@ public class escMenuController : MonoBehaviour
         //UIdialogOverlayPanel.gameObject.SetActive(false);
         storyManager.enabled = false;
         active = false;
+        buyButton.onClick.AddListener(OnBuyButtonClicked);
         backGameBtn.onClick.AddListener(backGameListener);
         quitSaveBtn.onClick.AddListener(quitSaveListenerGateway);
         loadDebugBtn.onClick.AddListener(loadDebugListener);
@@ -265,6 +306,189 @@ public class escMenuController : MonoBehaviour
         ///    loggedOutPanel.gameObject.SetActive(true);
         ///    loginBtn.Select();
         /// DEBUG BUILD <end>
+    }
+
+    void OnApplicationQuit()
+    {
+        StopServer();
+    }
+
+    public void StartServer()
+    {
+        if (!HttpListener.IsSupported)
+        {
+            Debug.LogError("HTTP Listener wird nicht unterstützt!");
+            return;
+        }
+
+        httpListener = new HttpListener();
+        httpListener.Prefixes.Add("http://localhost:5000/success/");  // URL für Rückgabe von PayPal
+        httpListener.Start();
+
+        isListening = true;
+        listenerThread = new Thread(ListenForRequests);
+        listenerThread.Start();
+    }
+
+    public void StopServer()
+    {
+        isListening = false;
+        httpListener?.Stop();
+        listenerThread?.Abort();
+    }
+
+    private void ListenForRequests()
+    {
+        while (httpListener.IsListening)
+        {
+            HttpListenerContext context = httpListener.GetContext();
+            HttpListenerRequest request = context.Request;
+
+            if (request.Url.Query.Contains("paymentId") && request.Url.Query.Contains("PayerID"))
+            {
+                string paymentId = request.QueryString["paymentId"];
+                string payerId = request.QueryString["PayerID"];
+
+                Debug.Log($"Zahlung bestätigt! PaymentId: {paymentId}, PayerId: {payerId}");
+
+                var dispatcher = UnityMainThreadDispatcher.Instance();
+                if (dispatcher != null)
+                {
+                    dispatcher.Enqueue(() =>
+                    {
+                        dispatcher.exec(paymentId, payerId, accessToken);
+                    });
+                }
+                else
+                {
+                    Debug.LogError("❌ Fehler: Kein UnityMainThreadDispatcher vorhanden!");
+                }
+            }
+
+            HttpListenerResponse response = context.Response;
+            string responseString = "<html><body><h1>Zahlung erfolgreich!</h1></body></html>";
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+            response.ContentLength64 = buffer.Length;
+            System.IO.Stream output = response.OutputStream;
+            output.Write(buffer, 0, buffer.Length);
+            output.Close();
+        
+        }
+    }
+
+    private string GetQueryValue(string query, string key)
+    {
+        var parts = query.Trim('?').Split('&');
+        foreach (var part in parts)
+        {
+            var kv = part.Split('=');
+            if (kv.Length == 2 && kv[0] == key)
+                return kv[1];
+        }
+        return null;
+    }
+
+    public IEnumerator GetAccessToken()
+    {
+        string url = "https://api.sandbox.paypal.com/v1/oauth2/token";
+        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
+        request.SetRequestHeader("Authorization", "Basic " + 
+            System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(clientId + ":" + secret)));
+        request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.uploadHandler = new UploadHandlerRaw(System.Text.Encoding.UTF8.GetBytes("grant_type=client_credentials"));
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            var jsonResponse = JsonUtility.FromJson<PayPalAuthResponse>(request.downloadHandler.text);
+            accessToken = jsonResponse.access_token;
+            Debug.Log("Access Token erhalten: " + accessToken);
+        }
+        else
+        {
+            Debug.LogError("Fehler bei der Authentifizierung: " + request.error);
+        }
+    }
+
+       // Zahlung erstellen
+    private IEnumerator CreatePayment()
+    {
+        string url = "https://api.sandbox.paypal.com/v1/payments/payment";
+        string paymentJson = $"{{" +
+            $"\"intent\": \"sale\"," +
+            $"\"payer\": {{\"payment_method\": \"paypal\"}}," +
+            $"\"transactions\": [{{" +
+                $"\"amount\": {{\"total\": \"{ITEM_PRICE}\", \"currency\": \"{CURRENCY}\"}}," +
+                $"\"description\": \"Kauf von {ITEM_NAME}\"" +
+            $"}}]," +
+            $"\"redirect_urls\": {{" +
+                $"\"return_url\": \"http://localhost:5000/success\"," +
+                $"\"cancel_url\": \"http://localhost:5000/cancel\"" +
+            $"}}" +
+        $"}}";
+
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(paymentJson);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Zahlung erstellt: " + request.downloadHandler.text);
+            UpdateStatus("Zahlung erstellt. Weiterleitung zu PayPal...");
+            Debug.Log(request.downloadHandler.text);
+            var paymentResponse = JsonUtility.FromJson<PayPalPaymentResponse>(request.downloadHandler.text);
+            foreach (var link in paymentResponse.links)
+            {
+                if (link.rel == "approval_url") 
+                {
+                    Application.OpenURL(link.href);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Fehler beim Erstellen der Zahlung: " + request.error);
+            UpdateStatus("Fehler beim Erstellen der Zahlung");
+        }
+    }
+
+
+    
+
+
+    public void OnBuyButtonClicked()
+    {
+        UpdateStatus("Starte Kaufprozess...");
+        StartCoroutine(ProcessPurchase());
+    }
+
+    private IEnumerator ProcessPurchase()
+    {
+        yield return StartCoroutine(GetAccessToken());
+        if (!string.IsNullOrEmpty(accessToken))
+        {
+            yield return StartCoroutine(CreatePayment());
+        }
+        else
+        {
+            UpdateStatus("Kauf fehlgeschlagen: Keine Authentifizierung");
+        }
+    }
+
+    private void UpdateStatus(string message)
+    {
+        if (statusText != null)
+        {
+            statusText.text = message;
+        }
+        Debug.Log(message);
     }
 
     void FixedUpdate()

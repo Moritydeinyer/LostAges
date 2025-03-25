@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\audioManager.cs" />
     <Compile Include="Assets\Scripts\storyManager.cs" />
     <Compile Include="Assets\HeneGames\Dialogue System\Scripts\SimpleNavAgentAnimation.cs" />
+    <Compile Include="Assets\Scripts\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Scripts\FPSdisplay.cs" />
     <Compile Include="Assets\Scripts\doorToggle.cs" />
     <Compile Include="Assets\HeneGames\Dialogue System\Scripts\DialogueManager.cs" />
