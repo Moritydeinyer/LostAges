@@ -24,6 +24,7 @@ using Cainos.PixelArtTopDown_Basic;
 
 using UnityEngine.AI;
 using System.Globalization;
+using Unity.Collections;
 
 public class jsonGameData {
     public int id { get; set; }
@@ -38,6 +39,11 @@ public class jsonGameData {
     public string waypoints { get; set; }
     public int health { get; set;}
     public string respw { get; set; }
+}
+
+public class requestPaymentData {
+    public string approval_link { get; set; }
+    public string access_token { get; set; }
 }
 
 public class jsonPlayerData {
@@ -114,6 +120,7 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Button quitGameBtn;
     [SerializeField] private Button playBtn;
     [SerializeField] private Button logoutBtn;
+    [SerializeField] private Button shopBtn;
     [SerializeField] private Transform startPanel;
 
     [Header("Insert Game Name Panel")]
@@ -168,6 +175,41 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Image switchPanel;
     private float fadeDuration = 1f;
 
+<<<<<<< Updated upstream
+=======
+    [Header("In Game Purchase")]
+    private HttpListener httpListener;
+    private Thread listenerThread;
+    private bool isListening = false;
+
+    requestPaymentData paymentData;
+
+    [SerializeField] private Transform shopPanel;
+    [SerializeField] private Button quitShopBtn;
+
+    [SerializeField] private Button buyBtn1;
+    [SerializeField] private Button buyBtn2;
+    [SerializeField] private Button buyBtn3;
+    [SerializeField] private Button buyBtn4;
+
+    [SerializeField] private Button plusBtn1;
+    [SerializeField] private Button plusBtn2;
+    [SerializeField] private Button plusBtn3;
+    [SerializeField] private Button plusBtn4;
+
+    [SerializeField] private Button minusBtn1;
+    [SerializeField] private Button minusBtn2;
+    [SerializeField] private Button minusBtn3;
+    [SerializeField] private Button minusBtn4;
+
+    [SerializeField] private TextMeshProUGUI amount1;
+    [SerializeField] private TextMeshProUGUI amount2;
+    [SerializeField] private TextMeshProUGUI amount3;
+    [SerializeField] private TextMeshProUGUI amount4;
+
+
+
+>>>>>>> Stashed changes
     void Start()
     {
         savingText.enabled = false;
@@ -197,6 +239,24 @@ public class escMenuController : MonoBehaviour
         playBtn.onClick.AddListener(playListener);
         quitSelectBtn.onClick.AddListener(quitSelectListener);
         logoutBtn.onClick.AddListener(logoutListener);
+        shopBtn.onClick.AddListener(shopListener);
+        quitShopBtn.onClick.AddListener(quitShopListener);
+
+        plusBtn1.onClick.AddListener(() => { amount1.text = (int.Parse(amount1.text) + 1).ToString(); });
+        plusBtn2.onClick.AddListener(() => { amount2.text = (int.Parse(amount2.text) + 1).ToString(); });
+        plusBtn3.onClick.AddListener(() => { amount3.text = (int.Parse(amount3.text) + 1).ToString(); });
+        plusBtn4.onClick.AddListener(() => { amount4.text = (int.Parse(amount4.text) + 1).ToString(); });
+
+        minusBtn1.onClick.AddListener(() => { amount1.text = Math.Max(0, int.Parse(amount1.text) - 1).ToString(); });
+        minusBtn2.onClick.AddListener(() => { amount2.text = Math.Max(0, int.Parse(amount2.text) - 1).ToString(); });
+        minusBtn3.onClick.AddListener(() => { amount3.text = Math.Max(0, int.Parse(amount3.text) - 1).ToString(); });
+        minusBtn4.onClick.AddListener(() => { amount4.text = Math.Max(0, int.Parse(amount4.text) - 1).ToString(); });
+
+        buyBtn1.onClick.AddListener(() => { BuyItem(1); });
+        buyBtn2.onClick.AddListener(() => { BuyItem(2); });
+        buyBtn3.onClick.AddListener(() => { BuyItem(3); });
+        buyBtn4.onClick.AddListener(() => { BuyItem(4); });
+
 
         GeneralSettingsBtn.onClick.AddListener(() => {
             GeneralPanel.gameObject.SetActive(true); 
@@ -267,6 +327,163 @@ public class escMenuController : MonoBehaviour
         /// DEBUG BUILD <end>
     }
 
+<<<<<<< Updated upstream
+=======
+    private void BuyItem(int item)
+    {
+        int quantity = 0;
+        String price = "0";
+        if (item == 1)
+        {
+            quantity = int.Parse(amount1.text);
+            price = "1.99";
+            Debug.Log("Item 1 gekauft");
+        }
+        else if (item == 2)
+        {
+            quantity = int.Parse(amount2.text);
+            price = "2.99";
+            Debug.Log("Item 2 gekauft");
+        }
+        else if (item == 3)
+        {
+            quantity = int.Parse(amount3.text);
+            price = "3.99";
+            Debug.Log("Item 3 gekauft");
+        }
+        else if (item == 4)
+        {
+            quantity = int.Parse(amount4.text);
+            price = "4.99";
+            Debug.Log("Item 4 gekauft");
+        }
+        if (quantity > 0)
+        {
+            Debug.Log("Kauf wird verarbeitet...");
+            requestPayment(quantity, price, item);
+        }
+        else
+        {
+            Debug.Log("Keine Menge ausgewählt!");
+        }
+    }
+
+    public async void requestPayment(int quantity, String price, int item) 
+    {
+        //DEBUG
+        try 
+        {
+            
+            string data = "{\"quantity\":\"" + quantity + "\",\"authentication_id\":\"" + authentication_id + "\",\"price\":\"" + price + "\",\"item_id\":\"" + item + "\"}";                              
+            HttpClient client = new HttpClient();
+            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/request_payment", queryString);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Debug.Log(responseBody);
+            paymentData = JsonConvert.DeserializeObject<requestPaymentData>(responseBody);
+            Application.OpenURL(paymentData.approval_link);
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogError(e);
+        }
+    } 
+
+    void OnApplicationQuit()
+    {
+        StopServer();
+    }
+
+    public void shopListener()
+    {
+        startPanel.gameObject.SetActive(false);
+        shopPanel.gameObject.SetActive(true);
+    }
+
+    public void quitShopListener()
+    {
+        shopPanel.gameObject.SetActive(false);
+        startPanel.gameObject.SetActive(true);
+        playBtn.Select();
+    }
+
+    public void StartServer()
+    {
+        if (!HttpListener.IsSupported)
+        {
+            Debug.LogError("HTTP Listener wird nicht unterstützt!");
+            return;
+        }
+
+        httpListener = new HttpListener();
+        httpListener.Prefixes.Add("http://localhost:5000/success/");  // URL für Rückgabe von PayPal
+        httpListener.Start();
+
+        isListening = true;
+        listenerThread = new Thread(ListenForRequests);
+        listenerThread.Start();
+    }
+
+    public void StopServer()
+    {
+        isListening = false;
+        httpListener?.Stop();
+        listenerThread?.Abort();
+    }
+
+    private void ListenForRequests()
+    {
+        while (httpListener.IsListening)
+        {
+            HttpListenerContext context = httpListener.GetContext();
+            HttpListenerRequest request = context.Request;
+            HttpListenerResponse response = context.Response;
+            if (request.Url.Query.Contains("paymentId") && request.Url.Query.Contains("PayerID") && request.Url.Query.Contains("token"))
+            {
+                string paymentId = request.QueryString["paymentId"];
+                string payerId = request.QueryString["PayerID"];
+                string token = request.QueryString["token"];
+                Debug.Log($"Zahlung bestätigt! PaymentId: {paymentId}, PayerId: {payerId}");
+                exec_payment(paymentId, payerId, token);
+                response.StatusCode = 302; 
+                response.Headers["Location"] = "https://iab-services.ddns.net/api/gta_speichersdorf/payment/success"; 
+            }
+            response.Close();
+        }
+    }
+
+    private async void exec_payment(String paymentId, String payerId, String token)
+    {
+        try {
+            Debug.Log($"Zahlung bestätigt! PaymentId: {paymentId}, PayerId: {payerId}, Token: {token}");
+            Debug.Log(authentication_id);
+            string data = "{\"paymentID\":\"" + paymentId + "\",\"payerID\":\"" + payerId + "\",\"token\":\"" + token + "\",\"authentication_id\":\"" + authentication_id + "\"}";
+            HttpClient client = new HttpClient();
+            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage res = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/exec_payment", queryString);
+            string responseBody = await res.Content.ReadAsStringAsync();
+            Debug.Log(responseBody);
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogError(e);
+        }
+    }
+
+    private string GetQueryValue(string query, string key)
+    {
+        var parts = query.Trim('?').Split('&');
+        foreach (var part in parts)
+        {
+            var kv = part.Split('=');
+            if (kv.Length == 2 && kv[0] == key)
+                return kv[1];
+        }
+        return null;
+    }
+
+
+>>>>>>> Stashed changes
     void FixedUpdate()
     {
         //DEBUG TEST START
