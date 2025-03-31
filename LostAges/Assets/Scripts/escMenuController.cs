@@ -25,6 +25,34 @@ using Cainos.PixelArtTopDown_Basic;
 using UnityEngine.AI;
 using System.Globalization;
 using Unity.Collections;
+<<<<<<< Updated upstream
+=======
+
+
+[System.Serializable]
+public class PayPalAuthResponse
+{
+    public string access_token;
+}
+[System.Serializable]
+public class PayPalPaymentResponse
+{
+    public string id;
+    public string intent;
+    public string state;
+    public string payer;
+    public string transactions;
+    public string description;
+    public string create_time;
+    public Link[] links;
+}
+[System.Serializable]
+public class Link
+{
+    public string href;
+    public string rel;
+}
+>>>>>>> Stashed changes
 
 public class jsonGameData {
     public int id { get; set; }
@@ -183,6 +211,34 @@ public class escMenuController : MonoBehaviour
     private bool isListening = false;
 
     requestPaymentData paymentData;
+<<<<<<< Updated upstream
+=======
+
+    [SerializeField] private Transform shopPanel;
+    [SerializeField] private Button quitShopBtn;
+
+    [SerializeField] private Button buyBtn1;
+    [SerializeField] private Button buyBtn2;
+    [SerializeField] private Button buyBtn3;
+    [SerializeField] private Button buyBtn4;
+
+    [SerializeField] private Button plusBtn1;
+    [SerializeField] private Button plusBtn2;
+    [SerializeField] private Button plusBtn3;
+    [SerializeField] private Button plusBtn4;
+
+    [SerializeField] private Button minusBtn1;
+    [SerializeField] private Button minusBtn2;
+    [SerializeField] private Button minusBtn3;
+    [SerializeField] private Button minusBtn4;
+
+    [SerializeField] private TextMeshProUGUI amount1;
+    [SerializeField] private TextMeshProUGUI amount2;
+    [SerializeField] private TextMeshProUGUI amount3;
+    [SerializeField] private TextMeshProUGUI amount4;
+
+
+>>>>>>> Stashed changes
 
     [SerializeField] private Transform shopPanel;
     [SerializeField] private Button quitShopBtn;
@@ -328,7 +384,10 @@ public class escMenuController : MonoBehaviour
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     private void BuyItem(int item)
     {
         int quantity = 0;
