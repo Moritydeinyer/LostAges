@@ -50,17 +50,22 @@ public class doorToggle : MonoBehaviour
         {
             isPlayerInRange = true;
             var txt = "";
+            var txt1 = "";
             if (atv)
             {
                 if (closedDoor.activeSelf) 
                 {
                     txt = "Press 'E' to open door";
+                    txt1 = "Press     to open door";
                 } 
                 else 
                 {
                     txt = "Press 'E' to close door";
+                    txt1 = "Press     to close door";
                 }
-                escMC.UIinteractionPanelData.text = txt;
+                escMC.UIinteractionPanelDataKeyboard.text = txt; 
+                escMC.UIinteractionPanelDataXbox.text = txt1;
+                escMC.UIinteractionPanelDataPS.text = txt1;
                 escMC.UIinteractionPanel.gameObject.SetActive(true);
             }
         }

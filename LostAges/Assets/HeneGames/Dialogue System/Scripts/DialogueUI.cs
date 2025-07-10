@@ -67,9 +67,10 @@ namespace HeneGames.DialogueSystem
         public virtual void InputUpdate()
         {
             //Next dialogue input
-            if (talk)
+            if (talk && currentDialogueManager != null)
             {
                 talk = false;
+                Debug.Log("1");
                 NextSentenceSoft();
             }
         }
@@ -82,13 +83,16 @@ namespace HeneGames.DialogueSystem
         {
             if (startDialogueDelayTimer <= 0f)
             {
+                Debug.Log("2");
                 startDialogueDelayTimer = 0.2f;
                 if (!typing)
                 {
+                    Debug.Log("3");
                     NextSentenceHard();
                 }
                 else
                 {
+                    Debug.Log("4");
                     StopAllCoroutines();
                     typing = false;
                     messageText.text = currentMessage;
@@ -107,7 +111,7 @@ namespace HeneGames.DialogueSystem
 
             if(currentDialogueManager == null) {
             }
-
+            Debug.Log("5");
             //Tell the current dialogue manager to display the next sentence. This function also gives information if we are at the last sentence
             currentDialogueManager.NextSentence(out bool lastSentence);
             //If last sentence remove current dialogue manager

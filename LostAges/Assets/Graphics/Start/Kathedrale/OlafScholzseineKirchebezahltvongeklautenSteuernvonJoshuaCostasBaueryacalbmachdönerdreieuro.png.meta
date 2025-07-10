@@ -1,0 +1,435 @@
+fileFormatVersion: 2
+guid: ef0cc22ca1e0d094e89d32df3d0e562f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_0"
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 728
+        width: 514
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139c74b6a0e30ad4db50bffa0249a88f
+      internalID: 2062200350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_1"
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 648
+        width: 533
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0267f407782eb5a4aa7d7ea6279e4eee
+      internalID: -474978449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_2"
+      rect:
+        serializedVersion: 2
+        x: 1171
+        y: 794
+        width: 98
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb307a5268de37f41a86b7e65901c436
+      internalID: -1603823035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_3"
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 790
+        width: 128
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6942c56bac58be4388accc58ee9e1d0
+      internalID: 1842779680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_4"
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 710
+        width: 317
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163dba4d052e7d84bac15047cc3ec623
+      internalID: 571172166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_5"
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 482
+        width: 204
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5523e4e6cdd1f044e828b1f4c4a02a48
+      internalID: 1481194167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_6"
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 461
+        width: 109
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65b9ff640cf3b24f8bcc3b9c87e75d2
+      internalID: 1709569569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_7"
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 464
+        width: 126
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca88b7e15b9abce46bfbc6c0634eb2c6
+      internalID: -136201519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_8"
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 491
+        width: 129
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e6cec2d1daf1c47abe7e0b73661867
+      internalID: -2085857687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_9"
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 497
+        width: 107
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0deb938796b51c24fb336f24e894782a
+      internalID: 46618972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_10"
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 462
+        width: 110
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c759ef1cf10314983b0c32ea705927
+      internalID: 1004121931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_11"
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 499
+        width: 151
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a6193c204555bb48b89a4ab513e99d1
+      internalID: -163907136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_12"
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 30
+        width: 635
+        height: 362
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7513cba309745974ca9ed10a184d5d58
+      internalID: 1653926134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_13"
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 0
+        width: 1010
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65dc9ec3ff82fd64e9d04326ea0ef1f2
+      internalID: 1504752057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_0": 2062200350
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_1": -474978449
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_10": 1004121931
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_11": -163907136
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_12": 1653926134
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_13": 1504752057
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_2": -1603823035
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_3": 1842779680
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_4": 571172166
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_5": 1481194167
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_6": 1709569569
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_7": -136201519
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_8": -2085857687
+      "OlafScholzseineKirchebezahltvongeklautenSteuernvonJoshuaCostasBaueryacalbmachd\xF6nerdreieuro_9": 46618972
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

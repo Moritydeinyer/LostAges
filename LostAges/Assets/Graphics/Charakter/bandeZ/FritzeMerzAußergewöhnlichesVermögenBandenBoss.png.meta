@@ -1,0 +1,1007 @@
+fileFormatVersion: 2
+guid: a331426442da7204591b141803b0c702
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd09c11d0f35bb4f9bc2559116a0996
+      internalID: -51080557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_1"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743622fb5e5fc5e4e918958bfcbc2ade
+      internalID: -1415255593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_2"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af3332d50cccb9479eaf52f499d130f
+      internalID: 811168434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_3"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1828583e16dfb3c4a91c610b404bbc72
+      internalID: -569894998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_4"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de25397934003f4d9e135ef0402af97
+      internalID: 639735925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_5"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd85db7b84bfada4eb6e53c1fe21446b
+      internalID: -1411722750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_6"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c0282c5f304c64295a18c95ada13b3
+      internalID: 1663116307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_7"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db040691f038e241ac9270cfe7414f7
+      internalID: 526088120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_8"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 493c6203633bf714aac26307d5944a88
+      internalID: -1285656963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_9"
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e5c2b9814a433749bba8b80fcdf6549
+      internalID: 1254486030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_10"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a5b6bde231f1b4f940f13ff5a59bbe
+      internalID: -1069843808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_11"
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d5806c2ba4b0c4aa2a2e5b29721650
+      internalID: 1551360825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_12"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22265fa2aa98754092b5482f8f1e4fa
+      internalID: -1696958026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_13"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e481175087bbe6a4bbb97e974f97ae51
+      internalID: 1503327069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_14"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d68b693da2a824ca93ff3e1f6bdfd1
+      internalID: 2141257353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_15"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a61eb4bcb9224b4c9f18ff9e674bb38
+      internalID: 1313604379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_16"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971b18cbe0abd3d40be12b2a79828374
+      internalID: 207300356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_17"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 378dca3bfb001b74cb8d072af74b785f
+      internalID: 1221878939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_18"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b479ebc6ad66adb4c8cc02d50b4d4168
+      internalID: -1931515959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_19"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffdd760b38f396498b5a12e4f147477
+      internalID: 1002914799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_20"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd67df7cb5f9bc4da445d2064d4ef97
+      internalID: -1612377422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_21"
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec68ec79c241d847aadbe31125349b5
+      internalID: -1206457964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_22"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc3d76f81f0f1a4b94847fa2f92bbbd
+      internalID: 588398738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_23"
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b5bdba1a2d2cd4eb244e0f80e8fcab
+      internalID: -334570180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_24"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092d933a0153ebd4d982c359818b1bb9
+      internalID: -1666430559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_25"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d227b2c48e8949d4196a820a215e90fd
+      internalID: -1079615842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_26"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efdcb5d93e4b7464bbb8f0f215e2edec
+      internalID: -773919389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_27"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d7c83e5b84a5654a91c3ae16a423185
+      internalID: 819525304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_28"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9710b1140da7692439a27225dc82bc9a
+      internalID: 1775028151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_29"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765d8db515d384f46936d407079ab48c
+      internalID: 1361873556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_30"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01f915b5cf305e84d8f6aa853cb06638
+      internalID: 568578750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_31"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bc32bd6c3498748933f286986be76e
+      internalID: -1743160481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_32"
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7388b3dfd5710645a8da91158374453
+      internalID: 294052783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_33"
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229c7ed1f3e638f419fd57718d5f27b9
+      internalID: -532531896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_34"
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8417eacbbee3c904ba00f2f6db55c41f
+      internalID: -1017067679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_35"
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f78ece2586fd924aa00f8988bc4f0d3
+      internalID: -1102168817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_36"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b17b570513d30d4196bf32677128e01
+      internalID: -521764527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_37"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de5bac36642a1e4eb46e3500aeca51a
+      internalID: 306806573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_38"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a3ef7e560f53843b68c66249f13cd3
+      internalID: 1596223809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_39"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38254256fe544b4cad492b92c2918bf
+      internalID: -286139014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_0": -51080557
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_1": -1415255593
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_10": -1069843808
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_11": 1551360825
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_12": -1696958026
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_13": 1503327069
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_14": 2141257353
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_15": 1313604379
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_16": 207300356
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_17": 1221878939
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_18": -1931515959
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_19": 1002914799
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_2": 811168434
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_20": -1612377422
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_21": -1206457964
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_22": 588398738
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_23": -334570180
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_24": -1666430559
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_25": -1079615842
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_26": -773919389
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_27": 819525304
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_28": 1775028151
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_29": 1361873556
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_3": -569894998
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_30": 568578750
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_31": -1743160481
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_32": 294052783
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_33": -532531896
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_34": -1017067679
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_35": -1102168817
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_36": -521764527
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_37": 306806573
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_38": 1596223809
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_39": -286139014
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_4": 639735925
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_5": -1411722750
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_6": 1663116307
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_7": 526088120
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_8": -1285656963
+      "FritzeMerzAu\xDFergew\xF6hnlichesVerm\xF6genBandenBoss_9": 1254486030
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

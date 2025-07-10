@@ -21,12 +21,14 @@ using Unity.VisualScripting;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using Cainos.PixelArtTopDown_Basic;
-
+using System.Threading;
 using UnityEngine.AI;
 using System.Globalization;
 using Unity.Collections;
-<<<<<<< Updated upstream
-=======
+using System.Dynamic;
+using UnityEngine.Rendering;
+
+
 
 
 [System.Serializable]
@@ -52,10 +54,9 @@ public class Link
     public string href;
     public string rel;
 }
->>>>>>> Stashed changes
 
 public class jsonGameData {
-    public int id { get; set; }
+    public string id { get; set; }
     public float x { get; set; }
     public float y { get; set; }
     public int z { get; set; }
@@ -74,14 +75,18 @@ public class requestPaymentData {
     public string access_token { get; set; }
 }
 
-public class jsonPlayerData {
+public class jsonPlayerData
+{
     public int id { get; set; }
-    public string auth_id { get; set; }
+    public string authentication_id { get; set; }
     public string add { get; set; }
     public string username { get; set; }
     public string games { get; set; }
     public int settingsVolume { get; set; }
     public string bindings { get; set; }
+    public string moskito { get; set; }
+    public string diagnostics { get; set; }
+    public string autosave { get; set; }
 }
 
 public class escMenuController : MonoBehaviour
@@ -108,7 +113,9 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Transform UIminiMapPanel;
     [SerializeField] private Transform UIdialogOverlayPanel;
     [SerializeField] public Transform UIinteractionPanel;
-    [SerializeField] public TextMeshProUGUI UIinteractionPanelData;
+    [SerializeField] public TextMeshProUGUI UIinteractionPanelDataKeyboard;
+    [SerializeField] public TextMeshProUGUI UIinteractionPanelDataXbox;
+    [SerializeField] public TextMeshProUGUI UIinteractionPanelDataPS;
     [SerializeField] public GameObject InputKeyboardDialogUI;
     [SerializeField] public GameObject InputGamepadXboxDialogUI;
     [SerializeField] public GameObject InputGamepadPSDialogUI;
@@ -119,6 +126,25 @@ public class escMenuController : MonoBehaviour
     [SerializeField] public GameObject InteractionUIGamepadXboxTXT;
     [SerializeField] public GameObject InteractionUIGamepadPSTXT;
     [SerializeField] public GameObject mapPanel;
+    [SerializeField] public TextMeshProUGUI UIdataKey;
+    [SerializeField] public TextMeshProUGUI UIdataXbox;
+    [SerializeField] public TextMeshProUGUI UIdataPS;
+    [SerializeField] public Image keyIconImage;
+    [SerializeField] public Image xboxIconImage;
+    [SerializeField] public Image psIconImage;
+    [SerializeField] public TextMeshProUGUI UIdataKeyTalk;
+    [SerializeField] public TextMeshProUGUI UIdataXboxTalk;
+    [SerializeField] public TextMeshProUGUI UIdataPSTalk;
+    [SerializeField] public Image keyIconImageTalk;
+    [SerializeField] public Image xboxIconImageTalk;
+    [SerializeField] public Image psIconImageTalk;
+    [SerializeField] public TextMeshProUGUI UIdataKeyTalk2;
+    [SerializeField] public TextMeshProUGUI UIdataXboxTalk2;
+    [SerializeField] public TextMeshProUGUI UIdataPSTalk2;
+    [SerializeField] public Image keyIconImageTalk2;
+    [SerializeField] public Image xboxIconImageTalk2;
+    [SerializeField] public Image psIconImageTalk2;
+    [SerializeField] public InputIconLibrary inputIconLibrary;
 
     [Header("Esc Panel")]
     [SerializeField] private Button quitSaveBtn;
@@ -131,6 +157,7 @@ public class escMenuController : MonoBehaviour
     [Header("Settings Panel")]
     [SerializeField] private Button settingsSaveBtn;
     [SerializeField] private Transform settingsPanel;
+    [SerializeField] private Toggle sendDiagnosticsToggle;
     public AudioMixer mainMixer;
     public TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
@@ -152,6 +179,7 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Transform startPanel;
 
     [Header("Insert Game Name Panel")]
+    
     [SerializeField] private Button playBtnII;
     [SerializeField] private TMP_InputField gameNameInput;
     [SerializeField] private Transform insertGameNamePanel;
@@ -193,7 +221,7 @@ public class escMenuController : MonoBehaviour
     private bool canPressTKey = true;
     private bool canPressMKey = true;
     public jsonGameData gameData = new jsonGameData();
-    private jsonPlayerData playerData = new jsonPlayerData();
+    public jsonPlayerData playerData = new jsonPlayerData();
     public string authentication_id = "gh45";                           // DEBUG
     //public string authentication_id = "CfdR2IGZEQZUoApxK93Sm5nvLBUx";   // DEBUG (google)
     private PlayerProfile playerProfile;
@@ -203,16 +231,12 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Image switchPanel;
     private float fadeDuration = 1f;
 
-<<<<<<< Updated upstream
-=======
     [Header("In Game Purchase")]
     private HttpListener httpListener;
     private Thread listenerThread;
     private bool isListening = false;
 
     requestPaymentData paymentData;
-<<<<<<< Updated upstream
-=======
 
     [SerializeField] private Transform shopPanel;
     [SerializeField] private Button quitShopBtn;
@@ -237,37 +261,35 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amount3;
     [SerializeField] private TextMeshProUGUI amount4;
 
+    [Header("Version Control")]
+    [SerializeField] private GameObject versionControllPanel;
+    [SerializeField] private Button versionControllPanelBtn;
 
->>>>>>> Stashed changes
+    [SerializeField] public audioManager audioManager;
+    public int autosave = 300; // Autosave alle 5 Minuten
+    [SerializeField] private TMP_InputField autosaveintervall;
+    [SerializeField] public saveManager saveManager;
 
-    [SerializeField] private Transform shopPanel;
-    [SerializeField] private Button quitShopBtn;
 
-    [SerializeField] private Button buyBtn1;
-    [SerializeField] private Button buyBtn2;
-    [SerializeField] private Button buyBtn3;
-    [SerializeField] private Button buyBtn4;
+    [SerializeField] public Button showSchriftrolle1Btn;
+    [SerializeField] public Button showSchriftrolle2Btn;
+    [SerializeField] public GameObject PanelSchriftrolle1;
+    [SerializeField] public GameObject PanelSchriftrolle2;
 
-    [SerializeField] private Button plusBtn1;
-    [SerializeField] private Button plusBtn2;
-    [SerializeField] private Button plusBtn3;
-    [SerializeField] private Button plusBtn4;
+    [SerializeField] private List<Button> InventoryButtons;
+    private int selectedIndex = 0;
+    private float lastInputTime = 0f;
+    private float inputCooldown = 0.2f; // 200ms Schutz gegen Dauer-Trigger
 
-    [SerializeField] private Button minusBtn1;
-    [SerializeField] private Button minusBtn2;
-    [SerializeField] private Button minusBtn3;
-    [SerializeField] private Button minusBtn4;
-
-    [SerializeField] private TextMeshProUGUI amount1;
-    [SerializeField] private TextMeshProUGUI amount2;
-    [SerializeField] private TextMeshProUGUI amount3;
-    [SerializeField] private TextMeshProUGUI amount4;
+    public int level;
 
 
 
->>>>>>> Stashed changes
     void Start()
     {
+        GraphicsSettings.transparencySortMode = TransparencySortMode.CustomAxis;
+        GraphicsSettings.transparencySortAxis = new Vector3(0, 1, 1);
+
         savingText.enabled = false;
         StartCoroutine(SaveRoutine = AutoSave());
         FadeOut();
@@ -278,13 +300,14 @@ public class escMenuController : MonoBehaviour
         startPanel.gameObject.SetActive(false);
         selectGamePanel.gameObject.SetActive(false);
         insertGameNamePanel.gameObject.SetActive(false);
-        loggedOutPanel.gameObject.SetActive(false);
+        loggedOutPanel.gameObject.SetActive(false); //DEBUG build true
         taskPanel.gameObject.SetActive(false);
-        UIminiMapPanel.gameObject.SetActive(false);
+        UIminiMapPanel.gameObject.SetActive(false); //DEBUG build false
         UIinteractionPanel.gameObject.SetActive(false);
         //UIdialogOverlayPanel.gameObject.SetActive(false);
-        storyManager.enabled = false;
+        storyManager.enabled = false;   //DEBUG build
         active = false;
+        playerController.act = true; //DEBUG build false
         backGameBtn.onClick.AddListener(backGameListener);
         quitSaveBtn.onClick.AddListener(quitSaveListenerGateway);
         loadDebugBtn.onClick.AddListener(loadDebugListener);
@@ -298,7 +321,9 @@ public class escMenuController : MonoBehaviour
         shopBtn.onClick.AddListener(shopListener);
         quitShopBtn.onClick.AddListener(quitShopListener);
 
-        plusBtn1.onClick.AddListener(() => { amount1.text = (int.Parse(amount1.text) + 1).ToString(); });
+
+
+        plusBtn1.onClick.AddListener(() => { amount1.text = (playerData.moskito == "bought") ? "0" : "1"; });
         plusBtn2.onClick.AddListener(() => { amount2.text = (int.Parse(amount2.text) + 1).ToString(); });
         plusBtn3.onClick.AddListener(() => { amount3.text = (int.Parse(amount3.text) + 1).ToString(); });
         plusBtn4.onClick.AddListener(() => { amount4.text = (int.Parse(amount4.text) + 1).ToString(); });
@@ -314,23 +339,26 @@ public class escMenuController : MonoBehaviour
         buyBtn4.onClick.AddListener(() => { BuyItem(4); });
 
 
-        GeneralSettingsBtn.onClick.AddListener(() => {
-            GeneralPanel.gameObject.SetActive(true); 
-            ControllerPanel.gameObject.SetActive(false); 
+        GeneralSettingsBtn.onClick.AddListener(() =>
+        {
+            GeneralPanel.gameObject.SetActive(true);
+            ControllerPanel.gameObject.SetActive(false);
             KeyboardPanel.gameObject.SetActive(false);
         });
 
-        ControllerSettingsBtn.onClick.AddListener(() => {
-            GeneralPanel.gameObject.SetActive(false); 
-            ControllerPanel.gameObject.SetActive(true); 
+        ControllerSettingsBtn.onClick.AddListener(() =>
+        {
+            GeneralPanel.gameObject.SetActive(false);
+            ControllerPanel.gameObject.SetActive(true);
             KeyboardPanel.gameObject.SetActive(false);
             actions.LoadBindingOverridesFromJson("");
             loadBindings();
         });
 
-        KeyboardSettingsBtn.onClick.AddListener(() => {
-            GeneralPanel.gameObject.SetActive(false); 
-            ControllerPanel.gameObject.SetActive(false); 
+        KeyboardSettingsBtn.onClick.AddListener(() =>
+        {
+            GeneralPanel.gameObject.SetActive(false);
+            ControllerPanel.gameObject.SetActive(false);
             KeyboardPanel.gameObject.SetActive(true);
             actions.LoadBindingOverridesFromJson("");
             loadBindings();
@@ -360,10 +388,10 @@ public class escMenuController : MonoBehaviour
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height) 
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
-            } 
+            }
         }
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
@@ -371,7 +399,7 @@ public class escMenuController : MonoBehaviour
 
         mainMixer.SetFloat("masterVolume", 0);
 
-        
+
         /// DEBUG <start>
         mainMixer.SetFloat("masterVolume", -80);
         /// DEBUG <end>
@@ -381,13 +409,90 @@ public class escMenuController : MonoBehaviour
         ///    loggedOutPanel.gameObject.SetActive(true);
         ///    loginBtn.Select();
         /// DEBUG BUILD <end>
+
+
+        version();
+        sync();
+        tryAutoLogin();
+        Debug.LogWarning("Esc Menu Controller started");
+        showSchriftrolle1Btn.onClick.AddListener(() =>
+        {
+            showSchriftrolle1();
+        });
+        showSchriftrolle2Btn.onClick.AddListener(() =>
+        {
+            showSchriftrolle2();
+        });
+        Debug.LogWarning("Esc Menu Controller initialized");
+    }
+    
+    public void ChangeItem(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+        float y = input.y;
+
+        // Cooldown gegen zu viele Inputs
+        if (Time.time - lastInputTime < inputCooldown) return;
+
+        if (Mathf.Abs(y) > 0.5f)
+        {
+            if (y < 0) // Scroll/Mausrad runter → nächstes Item
+                selectedIndex++;
+            else        // Scroll/Mausrad hoch → vorheriges Item
+                selectedIndex--;
+
+            // Index begrenzen
+            if (selectedIndex < 0) selectedIndex = InventoryButtons.Count - 1;
+            if (selectedIndex >= InventoryButtons.Count) selectedIndex = 0;
+
+            // Fokus setzen
+            EventSystem.current.SetSelectedGameObject(InventoryButtons[selectedIndex].gameObject);
+            lastInputTime = Time.time;
+        }
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
+    async private void version()
+    {
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.GetAsync("https://iab-services.ddns.net/api/gta_speichersdorf/version");
+        string responseBody = await response.Content.ReadAsStringAsync();
+        if (!responseBody.Contains("b737ca7ee563ae80e457bb3d1dfe64edd2b4c015a8f88b6f87d5c113b68897fd"))
+        {
+            versionControllPanel.gameObject.SetActive(true);
+            versionControllPanelBtn.onClick.AddListener(() =>
+            {
+                versionControllPanel.gameObject.SetActive(false);
+                Application.Quit();
+            });
+        }
+    }
+
+    async private void tryAutoLogin()
+    {
+        playerData = await saveManager.getPlayerData(null);
+        if (playerData.id >= 1 && playerData.authentication_id != null && playerData.authentication_id != "")
+        {
+            authentication_id = playerData.authentication_id;
+            loggedOutPanel.gameObject.SetActive(false);
+            startPanel.gameObject.SetActive(true);
+            audioManager.StartMoskitoSFX();
+            playBtn.Select();
+            loadVolume();
+            loadBindings();
+        }
+        else
+        {
+            
+        }
+    }
+
+    async private void sync()
+    {
+        await saveManager.ProcessSyncQueue(authentication_id);
+    }
+
     private void BuyItem(int item)
     {
         int quantity = 0;
@@ -432,7 +537,6 @@ public class escMenuController : MonoBehaviour
         //DEBUG
         try 
         {
-            
             string data = "{\"quantity\":\"" + quantity + "\",\"authentication_id\":\"" + authentication_id + "\",\"price\":\"" + price + "\",\"item_id\":\"" + item + "\"}";                              
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
@@ -448,15 +552,12 @@ public class escMenuController : MonoBehaviour
         }
     } 
 
-    void OnApplicationQuit()
-    {
-        StopServer();
-    }
 
     public void shopListener()
     {
         startPanel.gameObject.SetActive(false);
         shopPanel.gameObject.SetActive(true);
+        StartServer();
     }
 
     public void quitShopListener()
@@ -464,6 +565,7 @@ public class escMenuController : MonoBehaviour
         shopPanel.gameObject.SetActive(false);
         startPanel.gameObject.SetActive(true);
         playBtn.Select();
+        StopServer();
     }
 
     public void StartServer()
@@ -506,7 +608,7 @@ public class escMenuController : MonoBehaviour
                 exec_payment(paymentId, payerId, token);
                 response.StatusCode = 302; 
                 response.Headers["Location"] = "https://iab-services.ddns.net/api/gta_speichersdorf/payment/success"; 
-            }
+             }
             response.Close();
         }
     }
@@ -542,20 +644,24 @@ public class escMenuController : MonoBehaviour
     }
 
 
->>>>>>> Stashed changes
     void FixedUpdate()
     {
         //DEBUG TEST START
         if (Input.GetKeyDown(KeyCode.L))
         {
-            //gameData.story_id = "9";
+            gameData.story_id = "10";
             //FadeInOut();
             //UIminiMapPanel.gameObject.SetActive(false);
             //UIdialogOverlayPanel.gameObject.SetActive(false);
             //gameData.story_id = "999";
-            Debug.Log(gameData.story_id);}
+            //EventSystem.current.SetSelectedGameObject(showSchriftrolle1Btn.gameObject);
+            //Debug.Log(playerTransform.position.y + " " + playerController.K2K2Trigger.transform.position.y);
+            //Debug.Log(gameData.story_id);
+            //
+            }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            Debug.LogError(gameData.story_id);
             //Debug.Log(actions.SaveBindingOverridesAsJson());    
             //Debug.Log(gameData.respw + "\nRestoring Respwn Point");
             //float x = float.Parse(gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
@@ -563,30 +669,23 @@ public class escMenuController : MonoBehaviour
             //playerTransform.position = new Vector3(x, y, 0);
             //gameData.story_id = "6";       
             //storyManager.kampfTutorialEnemy.gameObject.SetActive(false);   
-            storyManager.st1000Trigger();
+            //Debug.LogWarning(saveManager.LocalPath("test"));
+            //playerTransform.position = storyManager.SPTBC1.transform.position;
         }
         //DEBUG TEST ENDE
-        if (storyManager.enabled)
+
+
+        if (Gamepad.current != null)
         {
-            if (storyManager.checkStoryID("8"))
-            {
-                //FadeInOut();
-                playerTransform.position = new Vector3(playerTransform.position.x - 73.33997f, playerTransform.position.y - 29, 0);
-                Debug.Log(storyManager.session);
-                gameData.story_id = "9";
-            }
-        }
-        if (Gamepad.current != null) 
-        {
-            if (Gamepad.current.displayName.ToLower().Contains("xbox")) 
+            if (Gamepad.current.displayName.ToLower().Contains("xbox"))
             {
                 controllerType = "Xbox";
             }
-            if (Gamepad.current.displayName.ToLower().Contains("dualsense")) 
+            if (Gamepad.current.displayName.ToLower().Contains("dualsense"))
             {
                 controllerType = "PS";
             }
-            if (Gamepad.current.displayName.ToLower().Contains("playstation")) 
+            if (Gamepad.current.displayName.ToLower().Contains("playstation"))
             {
                 controllerType = "PS";
             }
@@ -633,6 +732,57 @@ public class escMenuController : MonoBehaviour
             InputKeyboardInteractionUI.SetActive(true);
             InteractionUIKeyboardTXT.SetActive(true);
         }
+
+        string keyboardScheme = "Keyboard&Mouse";
+        string gamepadScheme = "Gamepad";
+        var action = actions.FindAction("Interact");
+        var action2 = actions.FindAction("Talk");
+        if (action != null) 
+        {
+            ShowBinding(keyIconImage, UIdataKey, action, keyboardScheme, false);
+            ShowBinding(xboxIconImage, UIdataXbox, action, gamepadScheme, true);
+            ShowBinding(psIconImage, UIdataPS, action, gamepadScheme, false);
+        }
+        if (action2 != null) 
+        {
+            ShowBinding(keyIconImageTalk, UIdataKeyTalk, action2, keyboardScheme, false);
+            ShowBinding(xboxIconImageTalk, UIdataXboxTalk, action2, gamepadScheme, true);
+            ShowBinding(psIconImageTalk, UIdataPSTalk, action2, gamepadScheme, false);
+
+            ShowBinding(keyIconImageTalk2, UIdataKeyTalk2, action2, keyboardScheme, false);
+            ShowBinding(xboxIconImageTalk2, UIdataXboxTalk2, action2, gamepadScheme, true);
+            ShowBinding(psIconImageTalk2, UIdataPSTalk2, action2, gamepadScheme, false);
+        }
+    }
+
+    private void ShowBinding(Image image, TextMeshProUGUI text, InputAction action, string schemeName, bool xBox)
+    {
+        image.enabled = false;
+        text.enabled = false;
+        text.text = "";
+        foreach (var binding in action.bindings)
+        {
+            if (binding.groups != null && binding.groups.Contains(schemeName))
+            {
+                string path = binding.effectivePath;
+                Sprite icon = inputIconLibrary.GetIconForBinding(path, xBox);
+                if (icon != null)
+                {
+                    image.sprite = icon;
+                    image.enabled = true;
+                }
+                else
+                {
+                    image.enabled = false;
+                    text.text = InputControlPath.ToHumanReadableString(path, InputControlPath.HumanReadableStringOptions.OmitDevice);
+                    text.enabled = true;
+                }
+                return;
+            }
+        }
+        text.text = "N/A";
+        text.enabled = true;
+        image.enabled = false;
     }
 
     private void SetCursorToCenter()
@@ -667,10 +817,11 @@ public class escMenuController : MonoBehaviour
                 savingText.text = "Saving...";
                 //Debug.Log("saving...");
                 quitSaveListener(true);
+                sync();
                 yield return new WaitForSeconds(2f);
                 savingText.enabled = false;
             }
-            yield return new WaitForSeconds(300f); // DEBUG 5 min 
+            yield return new WaitForSeconds(autosave); // DEBUG 5 min 
         }
     }
 
@@ -718,6 +869,49 @@ public class escMenuController : MonoBehaviour
         }
     }
 
+    public void TeleportWithFade(Vector3 targetPosition, GameObject go)
+    {
+        StartCoroutine(TeleportRoutine(targetPosition, go));
+    }
+
+    public void showSchriftrolle1()
+    {
+        if (PanelSchriftrolle1.activeSelf)
+        {
+            PanelSchriftrolle1.SetActive(false);
+        }
+        else
+        {
+            PanelSchriftrolle1.SetActive(true);
+        }
+    }
+    public void showSchriftrolle2()
+    { 
+        if (PanelSchriftrolle2.activeSelf)
+        {
+            PanelSchriftrolle2.SetActive(false);
+        }
+        else
+        {
+            PanelSchriftrolle2.SetActive(true);
+        }
+    }
+
+    private IEnumerator TeleportRoutine(Vector3 targetPosition, GameObject go)
+    {
+        // Schritt 1: Fade to Black
+        yield return StartCoroutine(Fade(0f, 1f, false));
+
+        // Schritt 2: Teleportation
+        go.transform.position = targetPosition;
+
+        // Optional: kleine Wartezeit beim Blackout
+        yield return new WaitForSeconds(0.1f);
+
+        // Schritt 3: Fade Back
+        yield return StartCoroutine(Fade(1f, 0f, false));
+    }
+
     public void EscMenu(InputAction.CallbackContext context)
     {
         if (canPressEscKey) {StartCoroutine(HandleEscapeInput());}
@@ -754,15 +948,15 @@ public class escMenuController : MonoBehaviour
 
     public void deleteG1Listener() 
     {
-        deleteGame(game1.id, true);
+        deleteGame(game1, true);
     }
     public void deleteG2Listener() 
     {
-        deleteGame(game2.id, true);
+        deleteGame(game2, true);
     }
     public void deleteG3Listener() 
     {
-        deleteGame(game3.id, true);
+        deleteGame(game3, true);
     }
 
     public async void loginAuthListener()
@@ -772,16 +966,12 @@ public class escMenuController : MonoBehaviour
 
     private async void LoginController_OnSignedIn(PlayerProfile profile)
     {
-        //Debug.Log("Signed in: " + profile.playerInfo.Id);
+        Debug.Log("Signed in: " + profile.playerInfo.Id + "\n" + profile.playerInfo.Username + "\n" + profile.playerInfo.CreatedAt + "\n" + profile.playerInfo.GetType());
         authentication_id = profile.playerInfo.Id;
-        string data = "{\"authentication_id\":\"" + authentication_id + "\"}";
-        HttpClient client = new HttpClient();
-        StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", queryString);
-        string responseBody = await response.Content.ReadAsStringAsync();
-        playerData = JsonConvert.DeserializeObject<jsonPlayerData>(responseBody);
+        playerData = await saveManager.getPlayerData(authentication_id);
         loggedOutPanel.gameObject.SetActive(false);
         startPanel.gameObject.SetActive(true);
+        audioManager.StartMoskitoSFX();
         playBtn.Select();
         loadVolume();
         loadBindings();
@@ -792,22 +982,16 @@ public class escMenuController : MonoBehaviour
         playerProfile = profile;
     }
 
-    public async void deleteGame(int gameID, bool play)
+    public void deleteGame(jsonGameData gameDataTemp, bool play)
     {
         try
         {
-            string data = "{\"authentication_id\":\"" + authentication_id + "\", \"spielstand_id\":\"delete\", \"deleteID\":\"" + gameID + "\"}";
-            HttpClient client = new HttpClient();
-            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/save_spielstand", queryString);
-            string responseBody = await response.Content.ReadAsStringAsync(); 
-            Debug.Log(responseBody);
-            Debug.Log(gameID);
-            if (play) {playListener();}
+            saveManager.updateSpielstand(authentication_id, gameDataTemp, 0);
+            if (play) { playListener(); }
         } 
         catch (Exception e)
         {
-            Debug.Log(e);
+            Debug.Log("dl1 " + e);
         }
     }
 
@@ -828,6 +1012,8 @@ public class escMenuController : MonoBehaviour
         mainMixer.SetFloat("masterVolume", -80);
         // RESET KEY BINDINGS
         actions.LoadBindingOverridesFromJson("");
+        sync();
+        saveManager.logout();
     }
 
     public void setVolume(float volume) 
@@ -837,15 +1023,9 @@ public class escMenuController : MonoBehaviour
         updatePlayerDataDB();
     }
 
-    public async void updatePlayerDataDB()
+    public void updatePlayerDataDB()
     {
-        string data = "{\"volume\":\"" + playerData.settingsVolume + "\",\"authentication_id\":\"" + authentication_id + "\",\"bindings\":\"" + playerData.bindings.Replace("\"", "^$^") + "\"}";                        
-        HttpClient client = new HttpClient();
-        StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/update_account", queryString);
-        string responseBody = await response.Content.ReadAsStringAsync();
-        Debug.Log(responseBody);
-        Debug.Log(playerData.bindings.Replace("\"", "^$^"));
+        saveManager.updatePlayerData(authentication_id, playerData);
     }
 
 
@@ -925,29 +1105,64 @@ public class escMenuController : MonoBehaviour
                 playerRenderer.sortingLayerID = gameData.y_rot;
                 playerShadow.sortingLayerID = gameData.y_rot;
                 playerController.act = true;
+                storyManager.enabled = true;
+                if (playerController.act)
+                {
+                    if (storyManager.checkStoryIDgraterThan("100"))
+                    {
+                        bool inK1 = playerTransform.position.x < playerController.StartK1Trigger.transform.position.x;
+                        bool inK3 = playerTransform.position.x > playerController.StartK3Trigger.transform.position.x;
+                        bool inK2 = !inK1 && !inK3 && playerTransform.position.y > playerController.StartK2Trigger.transform.position.y;
+
+                        playerController.K1.SetActive(inK1);
+                        playerController.K2.SetActive(inK2);
+                        playerController.K3.SetActive(inK3);
+
+                        //DEBUG reset map // monolith tutorials...
+
+                        if (inK1)
+                        {
+                            playerController.mainMap.SetActive(!(playerTransform.position.x <= playerController.K1K1Trigger.transform.position.x));
+                        }
+                        else if (inK3)
+                        {
+                            playerController.mainMap.SetActive(!(playerTransform.position.x >= playerController.K3K3Trigger.transform.position.x));
+                        }
+                        else if (inK2)
+                        {
+                            playerController.mainMap.SetActive(!(playerTransform.position.y >= playerController.K2K2Trigger.transform.position.y));
+                        }
+                        else
+                        {
+                            playerController.mainMap.SetActive(true);
+                        }
+                    }
+                }
                 UIminiMapPanel.gameObject.SetActive(true);
                 foreach (GameObject waypoint in playerController.waypoints.ToArray())
                 {
                     playerController.DeleteWaypoint(waypoint);
                 }
-                foreach (string part in gameData.waypoints.Split(';'))
+                if (gameData.waypoints != null && gameData.waypoints != "")
                 {
-                    try 
+                   foreach (string part in gameData.waypoints.Split(';'))
                     {
-                        string[] coords = part.Split(':');
-                        float x = float.Parse(coords[0].Replace(",", "."), CultureInfo.InvariantCulture);
-                        float y = float.Parse(coords[1].Replace(",", "."), CultureInfo.InvariantCulture);
-                        //Debug.Log(x + " " + y);
-                        //Debug.Log(coords[0] + " " + coords[1]);
-                        Vector3 tempPosition = new Vector3(x, y, 0);
-                        GameObject wp = playerController.CreateWaypoint(tempPosition);
-                        wp.transform.position = tempPosition;
-                    } catch (Exception e) {
-                        Debug.Log(e);
-                    }
+                        try 
+                        {
+                            string[] coords = part.Split(':');
+                            float x = float.Parse(coords[0].Replace(",", "."), CultureInfo.InvariantCulture);
+                            float y = float.Parse(coords[1].Replace(",", "."), CultureInfo.InvariantCulture);
+                            //Debug.Log(x + " " + y);
+                            //Debug.Log(coords[0] + " " + coords[1]);
+                            Vector3 tempPosition = new Vector3(x, y, 0);
+                            GameObject wp = playerController.CreateWaypoint(tempPosition);
+                            wp.transform.position = tempPosition;
+                        } catch (Exception e) {
+                            Debug.Log(e);
+                        }
+                    } 
                 }
                 //UIdialogOverlayPanel.gameObject.SetActive(true); DEBUG
-                storyManager.enabled = true;
                 storyManager.chronosSWDM.StopDialogue();
                 storyManager.chronosSWDM.ext = true;
                 storyManager.session = false;
@@ -969,15 +1184,12 @@ public class escMenuController : MonoBehaviour
                 Debug.Log(e);
             }
             gameData = new jsonGameData();
-            gameData.id = 0;
+            gameData.id = "0";
             
             gameData.unlocked_areas = 0;
             gameData.story_id = "0";
             gameData.health = 400;
-            gameData.respw = "-34.4;-11.28";
-
-            playerTransform.position = new Vector3(-34.4f, -11.28f, 0);
-            
+            gameData.respw = storyManager.SpawnPoint.transform.position.x + ";" + storyManager.SpawnPoint.transform.position.y;            
             playerTransform.gameObject.layer = 20;
             playerRenderer.sortingLayerID = -1869315837;
             playerShadow.sortingLayerID = -1869315837;
@@ -994,7 +1206,16 @@ public class escMenuController : MonoBehaviour
     private IEnumerator HandleEscapeInput()
     {
         canPressEscKey = false;
-        if (escMenuPanel.gameObject.activeSelf || playerController.act) {
+        if (PanelSchriftrolle1.gameObject.activeSelf || PanelSchriftrolle2.gameObject.activeSelf)
+        {
+            PanelSchriftrolle1.SetActive(false);
+            PanelSchriftrolle2.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            canPressEscKey = true; 
+            yield break;
+        }
+        if (escMenuPanel.gameObject.activeSelf || playerController.act)
+        {
             if (!active)
             {
                 escMenuPanel.gameObject.SetActive(true);
@@ -1040,18 +1261,22 @@ public class escMenuController : MonoBehaviour
 
     private IEnumerator HandleMInput()
     {
-        canPressMKey = false;
-        if (playerController.act && !(mapPanel.gameObject.activeSelf)) {
-            mapPanel.gameObject.SetActive(true);
-            playerController.act = false;
-        }
-        else if (!playerController.act && mapPanel.gameObject.activeSelf) 
+        if (storyManager.checkStoryIDgraterThan("128")) 
         {
-            mapPanel.gameObject.SetActive(false);
-            playerController.act = true;
+            canPressMKey = false;
+            if (playerController.act && !(mapPanel.gameObject.activeSelf)) {
+                mapPanel.gameObject.SetActive(true);
+                playerController.act = false;
+            }
+            else if (!playerController.act && mapPanel.gameObject.activeSelf) 
+            {
+                mapPanel.gameObject.SetActive(false);
+                playerController.act = true;
+            }
+            yield return new WaitForSeconds(0.5f);
+            canPressMKey = true; 
         }
-        yield return new WaitForSeconds(0.5f);
-        canPressMKey = true; 
+        yield return null;
     }
 
     private void quitGameListener()
@@ -1070,67 +1295,65 @@ public class escMenuController : MonoBehaviour
         game1 = null;
         game2 = null;
         game3 = null;
-        try
+        bool ready = false;
+        sync();
+        while (!ready)
         {
-            string data = "{\"authentication_id\":\"" + authentication_id + "\"}";
-            HttpClient client = new HttpClient();
-            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", queryString);
-            string responseBody = await response.Content.ReadAsStringAsync();
-            playerData = JsonConvert.DeserializeObject<jsonPlayerData>(responseBody);
-            List<int> tempGameIds = playerData.games.Split(';').Select(int.Parse).ToList();
-            try 
+            try
             {
-                int game_id = tempGameIds[0];                                
-                data = "{\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
-                client = new HttpClient();
-                queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_spielstand", queryString);
-                responseBody = await response.Content.ReadAsStringAsync();
-                game1 = JsonConvert.DeserializeObject<jsonGameData>(responseBody);
-                if (game1.name == null || game1.name == "") {deleteGame(game1.id, true);} else
-                data1.SetText(game1.name + "<br>" + game1.ltp);
-            } 
-            catch //(Exception e) 
-            {
-                //Debug.Log(e);
+                Debug.Log(authentication_id);
+                playerData = await saveManager.getPlayerData(authentication_id);
+                audioManager.StartMoskitoSFX();
+                if (playerData.games == null || playerData.games == "") { ready = true; }
+                else
+                {
+                    List<string> tempGameIds = playerData.games.Split(';').ToList();
+                    ready = true;
+                    try
+                    {
+                        string game_id = tempGameIds[0];
+                        game1 = await saveManager.getSpielstand(game_id, authentication_id);
+                        if (game1.name == null || game1.name == "") { deleteGame(game1, false); ready = false; }
+                        else if (game1.name == "")
+                            data1.SetText("available");
+                        else
+                            data1.SetText(game1.name + "<br>" + game1.ltp);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
+                    try
+                    {
+                        string game_id = tempGameIds[1];
+                        game2 = await saveManager.getSpielstand(game_id, authentication_id);
+                        if (game2.name == null || game2.name == "") { deleteGame(game2, false); ready = false; }
+                        else
+                            data2.SetText(game2.name + "<br>" + game2.ltp);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
+                    try
+                    {
+                        string game_id = tempGameIds[2];
+                        game3 = await saveManager.getSpielstand(game_id, authentication_id);
+                        if (game3.name == null || game3.name == "") { deleteGame(game3, false); ready = false; }
+                        else
+                            data3.SetText(game3.name + "<br>" + game3.ltp);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
+                }
             }
-            try 
+            catch (Exception e)
             {
-                int game_id = tempGameIds[1];                                
-                data = "{\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
-                client = new HttpClient();
-                queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_spielstand", queryString);
-                responseBody = await response.Content.ReadAsStringAsync();
-                game2 = JsonConvert.DeserializeObject<jsonGameData>(responseBody);
-                if (game2.name == null || game2.name == "") {deleteGame(game2.id, true);} else
-                data2.SetText(game2.name + "<br>" + game2.ltp);
+                Debug.LogException(e);
             }
-            catch //(Exception e) 
-            {
-                //Debug.Log(e);
-            }
-            try 
-            {
-                int game_id = tempGameIds[2];                                
-                data = "{\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
-                client = new HttpClient();
-                queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_spielstand", queryString);
-                responseBody = await response.Content.ReadAsStringAsync();
-                game3 = JsonConvert.DeserializeObject<jsonGameData>(responseBody);
-                if (game3.name == null || game3.name == "") {deleteGame(game3.id, true);} else
-                data3.SetText(game3.name + "<br>" + game3.ltp);
-            } 
-            catch //(Exception e) 
-            {
-                //Debug.Log(e);
-            }
-        } 
-        catch (Exception e) 
-        {
-            Debug.LogError(e);
+            await Task.Delay(500);
         }
     }
 
@@ -1155,6 +1378,9 @@ public class escMenuController : MonoBehaviour
         escMenuPanel.gameObject.SetActive(false);
         settingsPanel.gameObject.SetActive(true);
         settingsSaveBtn.Select();
+        autosave = playerData.autosave != null && playerData.autosave != "" ? int.Parse(playerData.autosave) : 300;
+        autosaveintervall.text = autosave.ToString();
+        sendDiagnosticsToggle.isOn = playerData.diagnostics == "1";
 
     }
 
@@ -1164,6 +1390,32 @@ public class escMenuController : MonoBehaviour
         escMenuPanel.gameObject.SetActive(true);
         backGameBtn.Select();
         playerData.bindings = actions.SaveBindingOverridesAsJson();
+        if (sendDiagnosticsToggle.isOn)
+        {
+            playerData.diagnostics = "1";
+        }
+        else
+        {
+            playerData.diagnostics = "0";
+        }
+        if (autosaveintervall.text == null || autosaveintervall.text == "")
+        {
+            autosave = 300; // Default 5 min
+        }
+        else
+        {
+            try
+            {
+                autosave = int.Parse(autosaveintervall.text);
+                playerData.autosave = "" + autosave;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                autosave = 300; // Default 5 min
+                playerData.autosave = "" + autosave;
+            }
+        }
         updatePlayerDataDB();
     }
 
@@ -1172,26 +1424,35 @@ public class escMenuController : MonoBehaviour
         quitSaveListener(false);
     }
 
-    public async void quitSaveListener(bool autosave) 
+    public void quitSaveListener(bool autosave) 
     {
         try 
         {
-            gameData.respw = playerTransform.position.x + ";" + playerTransform.position.y;
-            int game_id = gameData.id;  
-            string waypointsToSave = "";
-            foreach (GameObject waypoint in playerController.waypoints)
+            if (gameData.name != null && gameData.name != "")
             {
-                waypointsToSave += waypoint.transform.position.x + ":" + waypoint.transform.position.y + ";";
-            }
-            string lastTimePlayed = System.DateTime.Now.ToString("dd/MM/yyyy");
-            string data = "{\"x\":\"" + playerTransform.position.x + "\",\"y\":\"" + playerTransform.position.y + "\",\"respw\":\"" + gameData.respw + "\",\"health\":\"" + gameData.health + "\",\"waypoints\":\"" + waypointsToSave + "\",\"z\":\"" + playerTransform.gameObject.layer + "\",\"y_rot\":\"" + playerRenderer.sortingLayerID + "\",\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\",\"name\":\"" + gameData.name + "\",\"ltp\":\"" + lastTimePlayed + "\",\"unlocked_areas\":\"" + gameData.unlocked_areas + "\",\"story_id\":\"" + gameData.story_id + "\"}";      
-            if (game_id == 0) {
-                data = "{\"x\":\"" + playerTransform.position.x + "\",\"y\":\"" + playerTransform.position.y + "\",\"respw\":\"" + gameData.respw + "\",\"health\":\"" + gameData.health + "\",\"waypoints\":\"" + waypointsToSave + "\",\"z\":\"" + playerTransform.gameObject.layer + "\",\"y_rot\":\"" + playerRenderer.sortingLayerID + "\",\"spielstand_id\":\"" + "create" + "\",\"authentication_id\":\"" + authentication_id + "\",\"name\":\"" + gameData.name + "\",\"ltp\":\"" + lastTimePlayed + "\",\"unlocked_areas\":\"" + gameData.unlocked_areas + "\",\"story_id\":\"" + gameData.story_id + "\"}";
-            }                         
-            HttpClient client = new HttpClient();
-            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/save_spielstand", queryString);
-            string responseBody = await response.Content.ReadAsStringAsync();
+                gameData.respw = playerTransform.position.x + ";" + playerTransform.position.y;
+                string waypointsToSave = "";
+                foreach (GameObject waypoint in playerController.waypoints)
+                {
+                    waypointsToSave += waypoint.transform.position.x + ":" + waypoint.transform.position.y + ";";
+                }
+
+                gameData.waypoints = waypointsToSave.TrimEnd(';');
+                gameData.ltp = System.DateTime.Now.ToString("dd/MM/yyyy");
+
+                if (gameData.id == "0")
+                {
+                    gameData.id = "create";
+                }
+
+                gameData.x = playerTransform.position.x;
+                gameData.y = playerTransform.position.y;
+                gameData.z = playerTransform.gameObject.layer;
+                gameData.y_rot = playerRenderer.sortingLayerID;
+
+                saveManager.updateSpielstand(authentication_id, gameData, 1);
+                sync();
+            } 
         } 
         catch (Exception e) 
         {
@@ -1199,7 +1460,7 @@ public class escMenuController : MonoBehaviour
         }
         if (!autosave) 
         {
-            storyManager.ResetMap();
+            //storyManager.ResetMap();
             storyManager.enabled = false;
             playerController.act = false;
             UIminiMapPanel.gameObject.SetActive(false);
@@ -1218,11 +1479,11 @@ public class escMenuController : MonoBehaviour
                         playerController.waypoints.Remove(waypoint);
                         Destroy(waypoint);
                     } catch (Exception e) {
-                        //Debug.Log(e);
+                        Debug.LogException(e);
                     }
                 }
             } catch (Exception e) {
-                //Debug.Log(e);
+                Debug.LogException(e);
             }
         }
     }
@@ -1239,10 +1500,11 @@ public class escMenuController : MonoBehaviour
 
     private async void loadDebugListener()                      // DEBUG
     {
+        return;
         playerController.act = true;
         try
         {
-            int game_id = 1026;                                
+            int game_id = 1324;                                
             string data = "{\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
@@ -1257,8 +1519,6 @@ public class escMenuController : MonoBehaviour
                     string[] coords = part.Split(':');
                     float x = float.Parse(coords[0].Replace(",", "."), CultureInfo.InvariantCulture);
                     float y = float.Parse(coords[1].Replace(",", "."), CultureInfo.InvariantCulture);
-                    Debug.Log(x + " " + y);
-                    Debug.Log(coords[0] + " " + coords[1]);
                     Vector3 tempPosition = new Vector3(x, y, 0);
                     GameObject wp = playerController.CreateWaypoint(tempPosition);
                     wp.transform.position = tempPosition;

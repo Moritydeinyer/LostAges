@@ -42,7 +42,7 @@ namespace HeneGames.DialogueSystem
             }
             if (sentences.Count > 0) {
             //Start dialogue by input
-            if (DialogueUI.instance.talk && dialogueTrigger != null && !dialogueIsOn)
+            if (DialogueUI.instance.talk && dialogueTrigger != null && !dialogueIsOn) //DEBUG
             {
                 //Trigger event inside DialogueTrigger component
                 if (dialogueTrigger != null)
@@ -209,6 +209,7 @@ namespace HeneGames.DialogueSystem
 
         public void NextSentence(out bool lastSentence)
         {
+            Debug.Log("ttt");
             //The next sentence cannot be changed immediately after starting
             if (coolDownTimer > 0f)
             {

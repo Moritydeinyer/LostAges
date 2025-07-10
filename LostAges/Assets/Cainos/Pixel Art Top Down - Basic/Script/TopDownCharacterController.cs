@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using HeneGames.DialogueSystem;
 using System.Globalization;
+using Pathfinding;
+using UnityEngine.EventSystems;
 
 namespace Cainos.PixelArtTopDown_Basic
 {
@@ -77,12 +79,30 @@ namespace Cainos.PixelArtTopDown_Basic
         private Vector3 currentMousePosition;
         private int direction;
         String dire = "South";
+        private Vector2 entryPosition;
 
-        
+        [Header("Map Management")]
+        [SerializeField] public GameObject K1;
+        [SerializeField] public GameObject K2;
+        [SerializeField] public GameObject K3;
+        [SerializeField] public GameObject mainMap; 
+        [SerializeField] public GameObject fogStartMitK;
+        [SerializeField] public GameObject fogStartOhneK;
 
+        [SerializeField] public BoxCollider2D StartK1Trigger;
+        [SerializeField] public BoxCollider2D StartK2Trigger;
+        [SerializeField] public BoxCollider2D StartK3Trigger;
+
+        [SerializeField] public BoxCollider2D K1K1Trigger;
+        [SerializeField] public BoxCollider2D K2K2Trigger;
+        [SerializeField] public BoxCollider2D K3K3Trigger;
+        private String tempCurrentTrigger;
+        public SpriteRenderer spRenderer;
+        private bool isClickOverUI;
 
         void Start()
         {
+            spRenderer = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             if (trailRenderer != null)
             {
@@ -145,48 +165,84 @@ namespace Cainos.PixelArtTopDown_Basic
 
         void Update()
         {
-            if (escMC.gameData.health <= 0) 
+            isClickOverUI = EventSystem.current.IsPointerOverGameObject();
+            if (act)
             {
-                if (!escMC.storyManager.checkStoryID("187"))                                    // DEBUG
+                if (escMC.gameData != null)
                 {
-                    if (escMC.storyManager.checkStoryID("1008")) {escMC.storyManager.resetEndFight();}
-                    if (escMC.storyManager.checkStoryID("1019")) {escMC.storyManager.resetEndFight();}
-                    StartCoroutine(afterWorldFadeOut());
-                    escMC.gameData.health = 100;
-                    escMC.storyManager.addStoryID("187");                                       // DEBUG
-                    escMC.playerTransform.transform.position = new Vector3(-34.4f, 55.1f, 0);   // DEBUG
-                } else {
-                    StartCoroutine(gameOverFadeOut());
-                    escMC.quitSaveListener(false);
-                    escMC.deleteGame(escMC.gameData.id, false);
+                    if (escMC.gameData.health <= 0)
+                    {
+                        if (!escMC.storyManager.checkStoryID("18700"))                                    // DEBUG
+                        {
+                            if (escMC.storyManager.checkStoryID("8008")) { escMC.storyManager.resetEndFight(); }
+                            if (escMC.storyManager.checkStoryID("8019")) { escMC.storyManager.resetEndFight(); }
+                            StartCoroutine(afterWorldFadeOut());
+                            escMC.storyManager.AfterWorldMap.SetActive(true);
+                            escMC.storyManager.updateNav = true;
+                            escMC.gameData.health = 100;
+                            escMC.storyManager.addStoryID("18700");
+                            escMC.playerTransform.transform.position = escMC.storyManager.SPAfterWorld.transform.position; // DEBUG 
+                        }
+                        else
+                        {
+                            escMC.storyManager.updateNav = true;
+                            escMC.storyManager.AfterWorldMap.SetActive(false);
+                            StartCoroutine(gameOverFadeOut());
+                            escMC.quitSaveListener(false);
+                            escMC.deleteGame(escMC.gameData, false);
+                        }
+                        lifebar.sprite = lfb0;
+                    }
+                    if (escMC.gameData.health <= 100 && escMC.gameData.health >= 1) { lifebar.sprite = lfb1; }
+                    if (escMC.gameData.health <= 200 && escMC.gameData.health >= 101) { lifebar.sprite = lfb2; }
+                    if (escMC.gameData.health <= 300 && escMC.gameData.health >= 201) { lifebar.sprite = lfb3; }
+                    if (escMC.gameData.health <= 400 && escMC.gameData.health >= 301) { lifebar.sprite = lfb4; }
+
+                    HandleZoom();
+                    if (escMC.mapPanel.activeSelf)
+                    {
+                        Cursor.visible = true;
+                        UpdateWaypointScale();
+                    }
+
+                    // DEBUG <start>
+                    if (Input.GetKeyDown(KeyCode.B))
+                    {
+                        if (animator.GetBool("swerd") == true)
+                        {
+                            animator.SetBool("swerd", false);
+                        }
+                        else
+                        {
+                            animator.SetBool("swerd", true);
+                        }
+                    }
+                    // DEBUG <end>  
                 }
-                lifebar.sprite = lfb0;
             }
-            if (escMC.gameData.health <= 100 && escMC.gameData.health >= 1) {lifebar.sprite = lfb1;}
-            if (escMC.gameData.health <= 200 && escMC.gameData.health >= 101) {lifebar.sprite = lfb2;}
-            if (escMC.gameData.health <= 300 && escMC.gameData.health >= 201) {lifebar.sprite = lfb3;}
-            if (escMC.gameData.health <= 400 && escMC.gameData.health >= 301) {lifebar.sprite = lfb4;}
-            
-            HandleZoom();
-            if (escMC.mapPanel.activeSelf)
+            if (!act && movementInput != Vector2.zero)
             {
-                Cursor.visible = true;
-                UpdateWaypointScale();
+                movementInput = Vector2.zero;
+                rb.velocity = Vector2.zero;
+            }
+            if (act && movementInput != Vector2.zero)
+            {
+                escMC.audioManager.playWalkSound = true;
+            }
+            else
+            {
+                escMC.audioManager.playWalkSound = false;
+            }
+            if (!act)
+            {
+                animator.SetBool("idle", true);
+                animator.SetBool("west", false);
+                animator.SetBool("east", false);
+                animator.SetBool("north", false);
+                animator.SetBool("south", false);
+                dire = "South";
             }
 
-            // DEBUG <start>
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                if (animator.GetBool("swerd") == true)
-                {
-                    animator.SetBool("swerd", false);
-                }
-                else
-                {
-                    animator.SetBool("swerd", true);
-                }
-        }
-            // DEBUG <end>
         }
 
         private void UpdateWaypointScale()
@@ -269,7 +325,7 @@ namespace Cainos.PixelArtTopDown_Basic
 
         void FixedUpdate()
         {
-            if (!isDashing)
+            if (!isDashing && act)
             {
                 rb.velocity = movementInput * speed * sprint;
             }
@@ -320,10 +376,16 @@ namespace Cainos.PixelArtTopDown_Basic
             canDash = true;
         }
 
+        
+
         public void Attack(InputAction.CallbackContext context)
         {
-            if (act) 
+            if (act)
             {
+                if (isClickOverUI)
+                {
+                    return;
+                }
                 attack();
                 // DEBUG add delay
             }
@@ -417,14 +479,14 @@ namespace Cainos.PixelArtTopDown_Basic
             }
             if (dir.y > 0)
             {
-                animator.SetBool("noth", true);
+                animator.SetBool("north", true);
                 animator.SetBool("south", false);
                 dire = "North";
             }
             else if (dir.y < 0)
             {
                 animator.SetBool("south", true);
-                animator.SetBool("noth", false);
+                animator.SetBool("north", false);
                 dire = "South";
             } 
             if (dir.x == 0 && dir.y == 0)
@@ -432,7 +494,7 @@ namespace Cainos.PixelArtTopDown_Basic
                 animator.SetBool("idle", true);
                 animator.SetBool("west", false);
                 animator.SetBool("east", false);
-                animator.SetBool("noth", false);
+                animator.SetBool("north", false);
                 animator.SetBool("south", false);
                 dire = "South";
             }
@@ -448,30 +510,193 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Item") && collision.gameObject.activeSelf)
+            if (act) 
             {
-                collision.gameObject.SetActive(false);
+                if (collision.CompareTag("Item") && collision.gameObject.activeSelf)
+                {
+                    collision.gameObject.SetActive(false);
+                    if (collision.gameObject.name.Contains("TaschenuhrAfterworld"))
+                    {
+                        escMC.gameData.story_id = "8017";
+                    }
+                    // DEBUG change story ID
+                    // escMC.gameData.story_id = int.Parse(collision.gameObject.name);
+                } else if (collision.gameObject.activeSelf)
+                {
+                    // if (collision.gameObject.name.Contains("AfterWorldKugel") && escMC.storyManager.checkStoryIDgraterThan("8002") && escMC.storyManager.checkStoryIDsmallerThan("8004"))
+                    // {
+                    //     escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    //     collision.gameObject.SetActive(false);
+                    // }
+                    if (collision.gameObject.name.Contains("Kugel(rot)"))
+                    {
+                        collision.gameObject.SetActive(false);
+                        escMC.storyManager.Kugel2UI.SetActive(true);
+                    }
+                    if (collision.gameObject.name.Contains("Ruinenwand") && escMC.storyManager.checkStoryID("K1_12"))
+                    { 
+                        escMC.storyManager.addStoryID("K1_13");
+                        escMC.storyManager.rmStoryID("K1_12");
+                    }
+                    // DEBUG bedingung endfight 7000
+                    if (collision.gameObject.name.Contains("CHRONOS") && escMC.storyManager.checkStoryID("7999"))
+                    {
+                        escMC.gameData.story_id = "8000";
+                    }
+                    if (collision.gameObject.name.Contains("Leader K1") && !escMC.storyManager.checkStoryID("K1") && !escMC.storyManager.checkStoryID("K1_done"))
+                    {
+                        escMC.storyManager.addStoryID("K1_temp");
+                    }
+                    if (collision.gameObject.name.Contains("Leader K2") && escMC.storyManager.checkStoryID("K2_53"))
+                    {
+                        // TRIGGER DIALOG DEBUG
+                        escMC.storyManager.addStoryID("K2_54");
+                    }
+                    if (collision.gameObject.name.Contains("AfterWorldPortalZeus"))
+                    {
+                        escMC.storyManager.kampfTutorialEnemy.player.position = escMC.storyManager.afterWorldSPZEUS.transform.position;
+                        escMC.gameData.story_id = "8007";
+                    }
+                    if (collision.gameObject.name.Contains("PortalAfterworld"))
+                    {
+                        escMC.storyManager.kampfTutorialEnemy.player.position = escMC.storyManager.afterWorldSPplayerCHRONOS.transform.position;
+                        escMC.gameData.story_id = "8015";
+                    }
+                    entryPosition = escMC.storyManager.kampfTutorialEnemy.player.position;
+                    if (collision.gameObject.name.Contains("TI")  && escMC.storyManager.checkStoryID("1"))
+                    {
+                        escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    } 
+                    if (collision.gameObject.name.Contains("TII")  && escMC.storyManager.checkStoryID("3"))
+                    {
+                        escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    } 
+                    if (collision.gameObject.name.Contains("TIII")  && escMC.storyManager.checkStoryID("6"))
+                    {
+                        escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    } 
+                    if (collision.gameObject.name.Contains("TIV")  && escMC.storyManager.checkStoryID("9"))
+                    {
+                        escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    }
 
-                if (collision.gameObject.name.Contains("KugelDEBUG")  && escMC.storyManager.checkStoryIDgraterThan("1001") && escMC.storyManager.checkStoryIDsmallerThan("1004"))
-                {
-                    escMC.gameData.story_id = "" + (int.Parse(escMC.gameData.story_id) + 1);
+                    tempCurrentTrigger = collision.gameObject.name;
+                    if (collision.gameObject.name.Contains("Start/K1Trigger") && fogStartMitK.activeSelf) 
+                    { 
+                        K1.SetActive(true);
+                    } 
+                    if (collision.gameObject.name.Contains("Start/K2Trigger") && fogStartMitK.activeSelf) 
+                    {
+                        K2.SetActive(true);
+                    } 
+                    if (collision.gameObject.name.Contains("Start/K3Trigger") && fogStartMitK.activeSelf) 
+                    {
+                        K3.SetActive(true);
+                    } 
+
+                    if (collision.gameObject.name.Contains("K1/K1Trigger") && K1.activeSelf) 
+                    {
+                        mainMap.SetActive(true);
+                    } 
+                    if (collision.gameObject.name.Contains("K2/K2Trigger") && K2.activeSelf) 
+                    {
+                        mainMap.SetActive(true);
+                    }
+                    if (collision.gameObject.name.Contains("K3/K3Trigger") && K3.activeSelf) 
+                    {
+                        mainMap.SetActive(true);
+                    }
+
+                    if (collision.gameObject.name.Contains("verhaftung TRIGGER K3") && !escMC.storyManager.checkStoryID("K3_done") && !escMC.storyManager.checkStoryID("K3")) 
+                    {
+                        escMC.storyManager.addStoryID("K3_temp");
+                    }
+                    
+                    if (collision.gameObject.name.Contains("verhaftung TRIGGER K2") && !escMC.storyManager.checkStoryID("K2_done") && !escMC.storyManager.checkStoryID("K2")) 
+                    {
+                        escMC.storyManager.addStoryID("K2_temp");
+                    }
+
+
+                    if (collision.gameObject.name.Contains("TP K2 TBC"))
+                    {
+                        K2.SetActive(true);
+                        escMC.storyManager.mapTBC.SetActive(false);
+                        escMC.storyManager.updateNav = true;
+                        escMC.storyManager.addStoryID("K2_53");
+                        escMC.storyManager.kampfTutorialEnemy.player.position = escMC.storyManager.SPTBC.transform.position;
+                    }
+                    if (collision.gameObject.name.Contains("TP TBC K2"))
+                    {
+                        K2.SetActive(false);
+                        escMC.storyManager.mapTBC.SetActive(true);
+                        escMC.storyManager.addStoryID("K2_52");
+                        escMC.storyManager.session = true;
+                        escMC.storyManager.updateNav = true;
+                        escMC.storyManager.kampfTutorialEnemy.player.position = escMC.storyManager.SPTBC1.transform.position;  
+                    }
+                    
+
                 }
-                if (collision.gameObject.name.Contains("PortalZEUS"))
+            }
+        }
+
+        void OnTriggerExit2D(Collider2D collision) 
+        {
+            if (act) 
+            {
+                Vector2 exitPosition = collision.transform.position;
+                Vector2 direction = exitPosition - entryPosition;
+                if (collision.gameObject.activeSelf) 
                 {
-                    escMC.storyManager.kampfTutorialEnemy.player.position = new Vector3(-57.38f, 55.7f, 0);
-                    escMC.gameData.story_id = "1007";
+                    if (collision.gameObject.name.Contains("Ruinenwand") && escMC.storyManager.checkStoryID("K1_13"))
+                    { 
+                        escMC.storyManager.addStoryID("K1_12");
+                        escMC.storyManager.rmStoryID("K1_13");
+                    }
+                    if (collision.gameObject.name.Contains("Start/K1Trigger") && fogStartMitK.activeSelf && K1.activeSelf)
+                    {
+                        if (this.transform.position.x > collision.transform.position.x)
+                        {
+                            K1.SetActive(false);
+                        }
+                    }
+                    if (collision.gameObject.name.Contains("Start/K2Trigger") && fogStartMitK.activeSelf && K2.activeSelf)
+                    {
+                        if (this.transform.position.y < collision.transform.position.y) 
+                        {
+                            K2.SetActive(false);
+                        }
+                    }
+                    if (collision.gameObject.name.Contains("Start/K3Trigger") && fogStartMitK.activeSelf && K3.activeSelf)
+                    {
+                        if (this.transform.position.x < collision.transform.position.x) 
+                        {
+                            K3.SetActive(false);
+                        }
+                    }
+                    if (collision.gameObject.name.Contains("K1/K1Trigger") && K1.activeSelf && mainMap.activeSelf) 
+                    {
+                        if (this.transform.position.x < collision.transform.position.x) 
+                        {
+                            mainMap.SetActive(false);
+                        }
+                    }
+                    if (collision.gameObject.name.Contains("K2/K2Trigger") && K2.activeSelf && mainMap.activeSelf)
+                    {
+                        if (this.transform.position.y > collision.transform.position.y)
+                        {
+                            mainMap.SetActive(false);
+                        }
+                    }
+                    if (collision.gameObject.name.Contains("K3/K3Trigger") && K3.activeSelf && mainMap.activeSelf)
+                    {
+                        if (this.transform.position.x > collision.transform.position.x)
+                        {
+                            mainMap.SetActive(false);
+                        }
+                    }
                 }
-                if (collision.gameObject.name.Contains("PortalAfterworld"))
-                {
-                    escMC.storyManager.kampfTutorialEnemy.player.position = new Vector3(-34.4f, 55.1f, 0);
-                    escMC.gameData.story_id = "1015";
-                }
-                if (collision.gameObject.name.Contains("TaschenuhrAfterworld"))
-                {
-                    escMC.gameData.story_id = "1017";
-                }
-                // DEBUG change story ID
-                // escMC.gameData.story_id = int.Parse(collision.gameObject.name);
             }
         }
 
@@ -493,7 +718,7 @@ namespace Cainos.PixelArtTopDown_Basic
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
         foreach (var enemy in allEnemies)
         {
-            if (enemy.active)
+            if (enemy.attackable)
                 {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy <= damageRange)
@@ -502,47 +727,84 @@ namespace Cainos.PixelArtTopDown_Basic
                     enemy.hit = true;  
                     if (enemy.health <= 0)
                     {
-                        if (!(escMC.storyManager.checkStoryID("11") || escMC.storyManager.checkStoryID("10")))
-                        {
-                            if (!escMC.storyManager.checkStoryID("187"))
+                        escMC.audioManager.PlayMonsterDeathSFX();
+                        if (!escMC.storyManager.checkStoryID("102"))
                             {
-                                if (escMC.storyManager.checkStoryID("1019"))
+                                if (!escMC.storyManager.checkStoryID("18700"))
                                 {
-                                    enemy.active = false;
-                                    Debug.Log("DEBUG Sieg über AfterworldEnemy0");
-                                } 
-                                else 
-                                {
-                                    if (!escMC.gameData.story_id.Contains("demo"))
+                                    if (escMC.storyManager.checkStoryID("8019"))
                                     {
-                                        Destroy(enemy.gameObject);
+                                        enemy.active = false;
+                                        Debug.Log("DEBUG Sieg über AfterworldEnemy0");
                                     }
                                     else
                                     {
-                                        enemy.health = enemy.maxHealth;
-                                        enemy.transform.position = new Vector3(32.55f, -7.09f, 0);
+                                        if (!escMC.gameData.story_id.Contains("demo"))
+                                        {
+                                            if (enemy.gameObject.name.Contains("ZEUS"))
+                                            {
+                                                enemy.gameObject.SetActive(false);
+                                            }
+                                            else if (enemy.gameObject.name.Contains("monster") && escMC.storyManager.checkStoryID("K1_11"))
+                                            {
+                                                enemy.gameObject.SetActive(false);
+                                                escMC.storyManager.addStoryID("K1_12");
+                                                enemy.health = enemy.maxHealth;
+                                                escMC.storyManager.rmStoryID("K1_11");
+                                            }
+                                            else
+                                            {
+                                                Destroy(enemy.gameObject);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            enemy.health = enemy.maxHealth;
+                                            enemy.transform.position = new Vector3(32.55f, -7.09f, 0);
+                                        }
                                     }
                                 }
-                            } 
-                            else 
-                            {
-                                enemy.health = enemy.maxHealth;
-                            } 
-                        }
+                                else
+                                {
+                                    enemy.health = enemy.maxHealth;
+                                    StartCoroutine(respawnFadeOut());
+                                    escMC.gameData.health = 400;
+                                    escMC.storyManager.rmStoryID("18700");
+                                    float x = float.Parse(escMC.gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
+                                    float y = float.Parse(escMC.gameData.respw.Split(';')[1].Replace(",", "."), CultureInfo.InvariantCulture);                                               // DEBUG
+                                    escMC.playerTransform.transform.position = new Vector3(x, y, 0);          // DEBUG
+                                    escMC.storyManager.session = false;
+                                    if (escMC.storyManager.checkStoryIDgraterThan("100"))
+                                    {
+                                        bool inK1 = escMC.playerTransform.position.x < StartK1Trigger.transform.position.x;
+                                        bool inK3 = escMC.playerTransform.position.x > StartK3Trigger.transform.position.x;
+                                        bool inK2 = !inK1 && !inK3 && escMC.playerTransform.position.y > StartK2Trigger.transform.position.y;
+
+                                        escMC.playerController.K1.SetActive(inK1);
+                                        escMC.playerController.K2.SetActive(inK2);
+                                        escMC.playerController.K3.SetActive(inK3);
+
+                                        if (inK1)
+                                        {
+                                            escMC.playerController.mainMap.SetActive(!(escMC.playerTransform.position.x <= K1K1Trigger.transform.position.x));
+                                        }
+                                        else if (inK3)
+                                        {
+                                            escMC.playerController.mainMap.SetActive(!(escMC.playerTransform.position.x >= K3K3Trigger.transform.position.x));
+                                        }
+                                        else if (inK2)
+                                        {
+                                            escMC.playerController.mainMap.SetActive(!(escMC.playerTransform.position.y >= K2K2Trigger.transform.position.y));
+                                        }
+                                        else
+                                        {
+                                            escMC.playerController.mainMap.SetActive(true);
+                                        }
+                                    }
+                                }
+                            }
                     }     
-                    if (escMC.storyManager.checkStoryID("187"))                                   // DEBUG
-                    {
-                        if (enemy.health <= 0)
-                        {
-                                                                                                    //DEBUG
-                            StartCoroutine(respawnFadeOut());
-                            escMC.gameData.health = 400;
-                            escMC.storyManager.rmStoryID("187");
-                            float x = float.Parse(escMC.gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
-                            float y = float.Parse(escMC.gameData.respw.Split(';')[1].Replace(",", "."), CultureInfo.InvariantCulture);                                               // DEBUG
-                            escMC.playerTransform.transform.position = new Vector3(x, y, 0);          // DEBUG
-                        }
-                    }
+
                 }
             }
         }

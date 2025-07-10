@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7e1e15604a42249ad660944cf8e2ad, type: 3}
+  m_Name: InputIconLibrary
+  m_EditorClassIdentifier: 
+  icons:
+  - bindingPath: <Gamepad>/buttonNorth
+    icon: {fileID: 21300000, guid: 014bc02795b64c94ca4d52eb73f47d00, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/buttonNorth
+    icon: {fileID: 21300000, guid: 5ea47ced1afb12c409bdf93ca81c0589, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/buttonEast
+    icon: {fileID: 21300000, guid: 16413612dd7718041ae7031770085ce8, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/buttonEast
+    icon: {fileID: 21300000, guid: 27d6110e68c942748adf56b53c2d3e9f, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/buttonSouth
+    icon: {fileID: 21300000, guid: f86f6752fff5f97488f3c4f398d46968, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/buttonSouth
+    icon: {fileID: 21300000, guid: 1d9749cbbb97a564bace11ec499f2ada, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/buttonWest
+    icon: {fileID: 21300000, guid: 98ac4644b99d9584fbb9a6ad0e9cd5aa, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/buttonWest
+    icon: {fileID: 21300000, guid: 27e2479c877a39d45b51c0f68ea97f31, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/leftStickPress
+    icon: {fileID: 21300000, guid: b7382fc1fd0d80146a72b0ee63a553f9, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/leftStickPress
+    icon: {fileID: 21300000, guid: b810c4331e46c6243a82b197d0ac3ed1, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/rightStickPress
+    icon: {fileID: 21300000, guid: 56acddfa1d9b7e64795c64b7fffefaa7, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/rightStickPress
+    icon: {fileID: 21300000, guid: 24ccc1dca7142114b83466f52a30ca9d, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/dpad
+    icon: {fileID: 21300000, guid: 65bd67090df5bd342a48dc1bf4db17a1, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/dpad
+    icon: {fileID: 21300000, guid: ae0d055975ee13f4ba73039e5ae1852f, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/dpad/up
+    icon: {fileID: 21300000, guid: 05bcd2e888215044dbb46d36a713f050, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/dpad/up
+    icon: {fileID: 21300000, guid: 260644cd4d4148741822c0029552be38, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/dpad/down
+    icon: {fileID: 21300000, guid: 9500db00f8a9eb74c8f860d0ae877b9c, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/dpad/down
+    icon: {fileID: 21300000, guid: 2505d282f7b93354a991d565560986ec, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/dpad/left
+    icon: {fileID: 21300000, guid: ad8b450df6ad2934899891bcc6be0576, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/dpad/left
+    icon: {fileID: 21300000, guid: 92d9458189eccc849b34061347e33c25, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/dpad/right
+    icon: {fileID: 21300000, guid: 5c804e4b3f3a9cc489daf9fd3c46f03d, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/dpad/right
+    icon: {fileID: 21300000, guid: 9a3347226fe4a904fbe10567cdca9825, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/leftShoulder
+    icon: {fileID: 21300000, guid: 1c5577c59073cb54bb3c32153486b92e, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/leftShoulder
+    icon: {fileID: 21300000, guid: ae2daa5baf9b00f4789de5c7155691da, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/rightShoulder
+    icon: {fileID: 21300000, guid: 18fd56fb6a64af24ab0c85f4a4f1523b, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/rightShoulder
+    icon: {fileID: 21300000, guid: a9b49dadeb173274da7e8d0701b664ab, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/rightTrigger
+    icon: {fileID: 21300000, guid: b4883ea3dc412d14c8feb8c211c8903a, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/rightTrigger
+    icon: {fileID: 21300000, guid: 1b22a3af527f6f24b9c6f1575972f81f, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/leftTrigger
+    icon: {fileID: 21300000, guid: 394adbab1e6bac44ca2e487756f9cdc2, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/leftTrigger
+    icon: {fileID: 21300000, guid: 9610d864be7e54548a4269929913933f, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/start
+    icon: {fileID: 21300000, guid: 3e15889e1a1fdda48a45a080d1616850, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/start
+    icon: {fileID: 21300000, guid: 05b18abfb48b14a46823baffdc6e2600, type: 3}
+    xBox: 0
+  - bindingPath: <Gamepad>/select
+    icon: {fileID: 21300000, guid: 42103a991fb92f34f9ff976bc8c245d2, type: 3}
+    xBox: 1
+  - bindingPath: <Gamepad>/select
+    icon: {fileID: 21300000, guid: 5fcda6b77ed27ba4ba0226920fcfda90, type: 3}
+    xBox: 0

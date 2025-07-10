@@ -1,0 +1,453 @@
+fileFormatVersion: 2
+guid: 81267ae2bdf785c4e9e773657bd81838
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_1"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bff049dabd9c0040af85a56fe1c919e
+      internalID: 1670538810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_2"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f45299e17575a48b5c2273ee80b68c
+      internalID: -1865512924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_3"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7315776d72dced429965510062e78cb
+      internalID: 247238467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_4"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c2b031d219f8d46ae5cea258fe1898
+      internalID: -750922482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_5"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca50bd55dc7a99b489005aa31322777b
+      internalID: 1011190992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_6"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f55c73e5ab016134c97ba57352d6b5cf
+      internalID: -240831344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_7"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4f2e53f26ffdb41a635e1279dac372
+      internalID: -12820708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_9"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad9891f7d756404dbf0610c8820c916
+      internalID: 1064135471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_10"
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c2b8c0647b005b4eab66b51e21176a3
+      internalID: 1081360169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_11"
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88482cad860f05540bd7fbeef5e53c1a
+      internalID: -1271172817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_12"
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c240815308a0043a414cc1f6a518aa
+      internalID: -1021813282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_13"
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ec4ab9fc36eae24c9843512be320cdb
+      internalID: -64716314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_14"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47761212c552b3a4590af73b3c850468
+      internalID: -1877360342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_15"
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f15fe74bd346e49ba2b99c6008f844
+      internalID: -324845476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_0": -780227958
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_1": 1670538810
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_10": 1081360169
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_11": -1271172817
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_12": -1021813282
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_13": -64716314
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_14": -1877360342
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_15": -324845476
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_16": 2044404676
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_17": 696285160
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_18": -1678174611
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_19": -532646859
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_2": -1865512924
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_20": 1041055294
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_21": 31687999
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_22": 168492773
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_23": 1254451592
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_24": -765060656
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_25": 176157558
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_26": -1968860132
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_27": 332417545
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_28": -185626744
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_29": -184697425
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_3": 247238467
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_30": 127481063
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_31": -612320706
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_4": -750922482
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_5": 1011190992
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_6": -240831344
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_7": -12820708
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_8": 1190891509
+      "OlafStolzSondervem\xF6genBandeZlaufanimationenvornehintenusw_9": 1064135471
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
