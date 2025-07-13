@@ -647,31 +647,31 @@ public class escMenuController : MonoBehaviour
     void FixedUpdate()
     {
         //DEBUG TEST START
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            gameData.story_id = "10";
-            //FadeInOut();
-            //UIminiMapPanel.gameObject.SetActive(false);
-            //UIdialogOverlayPanel.gameObject.SetActive(false);
-            //gameData.story_id = "999";
-            //EventSystem.current.SetSelectedGameObject(showSchriftrolle1Btn.gameObject);
-            //Debug.Log(playerTransform.position.y + " " + playerController.K2K2Trigger.transform.position.y);
-            //Debug.Log(gameData.story_id);
-            //
-            }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.LogError(gameData.story_id);
-            //Debug.Log(actions.SaveBindingOverridesAsJson());    
-            //Debug.Log(gameData.respw + "\nRestoring Respwn Point");
-            //float x = float.Parse(gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
-            //float y = float.Parse(gameData.respw.Split(';')[1].Replace(",", "."), CultureInfo.InvariantCulture);
-            //playerTransform.position = new Vector3(x, y, 0);
-            //gameData.story_id = "6";       
-            //storyManager.kampfTutorialEnemy.gameObject.SetActive(false);   
-            //Debug.LogWarning(saveManager.LocalPath("test"));
-            //playerTransform.position = storyManager.SPTBC1.transform.position;
-        }
+        // if (Input.GetKeyDown(KeyCode.L))
+        // {
+        //     gameData.story_id = "10";
+        //     //FadeInOut();
+        //     //UIminiMapPanel.gameObject.SetActive(false);
+        //     //UIdialogOverlayPanel.gameObject.SetActive(false);
+        //     //gameData.story_id = "999";
+        //     //EventSystem.current.SetSelectedGameObject(showSchriftrolle1Btn.gameObject);
+        //     //Debug.Log(playerTransform.position.y + " " + playerController.K2K2Trigger.transform.position.y);
+        //     //Debug.Log(gameData.story_id);
+        //     //
+        //     }
+        // if (Input.GetKeyDown(KeyCode.C))
+        // {
+        //     Debug.LogError(gameData.story_id);
+        //     //Debug.Log(actions.SaveBindingOverridesAsJson());    
+        //     //Debug.Log(gameData.respw + "\nRestoring Respwn Point");
+        //     //float x = float.Parse(gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
+        //     //float y = float.Parse(gameData.respw.Split(';')[1].Replace(",", "."), CultureInfo.InvariantCulture);
+        //     //playerTransform.position = new Vector3(x, y, 0);
+        //     //gameData.story_id = "6";       
+        //     //storyManager.kampfTutorialEnemy.gameObject.SetActive(false);   
+        //     //Debug.LogWarning(saveManager.LocalPath("test"));
+        //     //playerTransform.position = storyManager.SPTBC1.transform.position;
+        // }
         //DEBUG TEST ENDE
 
 

@@ -347,22 +347,26 @@ public class storyManager : MonoBehaviour
         if (checkStoryIDsmallerThan("10"))
         {
             miniMap.SetActive(false);
-            taschenuhrUI.SetActive(false);
             mapPROLOG.SetActive(true);
             mapSTARTWELT.SetActive(false);
             CHRONOS.SetActive(false);
         }
-        if (checkStoryIDgraterThan("11"))
+        if (checkStoryIDsmallerThan("8"))
         {
-            mapPROLOG.SetActive(false);
-            if (checkStoryIDgraterThan("8011") && checkStoryIDsmallerThan("8017"))
-            {
-                taschenuhrUI.SetActive(false);
-            } else
-            {
-                taschenuhrUI.SetActive(true);
-            }
+            taschenuhrUI.SetActive(false);
         }
+        if (checkStoryIDgraterThan("11"))
+            {
+                mapPROLOG.SetActive(false);
+                if (checkStoryIDgraterThan("8011") && checkStoryIDsmallerThan("8017"))
+                {
+                    taschenuhrUI.SetActive(false);
+                }
+                else
+                {
+                    taschenuhrUI.SetActive(true);
+                }
+            }
 
         if (!checkStoryIDgraterThan("8018"))
         {
@@ -1234,7 +1238,8 @@ public class storyManager : MonoBehaviour
 
     void st9Trigger()
     {
-        if (TriggerIV.isTrigger != true) 
+        taschenuhrUI.SetActive(true);
+        if (TriggerIV.isTrigger != true)
         {
             TriggerIV.isTrigger = true;
             entranceDoorH4.SetActive(true);
