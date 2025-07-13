@@ -745,6 +745,16 @@ namespace Cainos.PixelArtTopDown_Basic
                                             {
                                                 enemy.gameObject.SetActive(false);
                                             }
+                                            if (enemy.gameObject.name.Contains("mo1"))
+                                            {
+                                                enemy.gameObject.SetActive(false);
+                                                enemy.health = enemy.maxHealth;
+                                            }
+                                            if (enemy.gameObject.name.Contains("mo2"))
+                                            {
+                                                enemy.gameObject.SetActive(false);
+                                                enemy.health = enemy.maxHealth;
+                                            }
                                             else if (enemy.gameObject.name.Contains("monster") && escMC.storyManager.checkStoryID("K1_11"))
                                             {
                                                 enemy.gameObject.SetActive(false);

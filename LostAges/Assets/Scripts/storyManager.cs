@@ -74,6 +74,10 @@ public class storyManager : MonoBehaviour
     [SerializeField] public InteractionScript intKugel2;
     [SerializeField] public InteractionScript intKugel3;
 
+    [SerializeField] public Enemy mo1;
+    [SerializeField] public Enemy mo2;
+
+
     [Header("Startwelt")]
     [SerializeField] private SpriteRenderer kristall;
 
@@ -360,6 +364,11 @@ public class storyManager : MonoBehaviour
             }
         }
 
+        if (!checkStoryIDgraterThan("8018"))
+        {
+            mo1.gameObject.SetActive(false);
+            mo2.gameObject.SetActive(false);
+        }
 
 
         if (checkStoryIDgraterThan("116") || checkStoryIDsmallerThan("100"))
@@ -2314,6 +2323,8 @@ public class storyManager : MonoBehaviour
         StartCoroutine(attackDetectionAfterWorld());
         chronosEnemy.active = true;
         chronosEnemy.attackable = true;
+        mo1.gameObject.SetActive(true);
+        mo2.gameObject.SetActive(true);
     }
 
     IEnumerator attackDetectionAfterWorld()
@@ -2338,6 +2349,8 @@ public class storyManager : MonoBehaviour
 
     void st8018Trigger()
     {
+        mo1.active = false;
+        mo2.active = false;
         stopCoroutine(StartCoroutine(setDialogue(0.5f, chronosSWDC, "Nein... Nein! ICH bin die Zeit! ICH kann nicht...", chronosSWDM, true, st8019Trigger)));
     }
 
