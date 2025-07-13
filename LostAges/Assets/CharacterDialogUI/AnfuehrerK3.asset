@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4a308dae7ffd048a8b0eb8d5ae4a02, type: 3}
   m_Name: AnfuehrerK3
   m_EditorClassIdentifier: 
-  characterPhoto: {fileID: 21300000, guid: 6e5e4fbd7cffbd143a88ff40b22de343, type: 3}
-  characterName: Anfuehrer K3
+  characterPhoto: {fileID: 21300000, guid: 46cdd4112e5930146b8bc2695b10dbcc, type: 3}
+  characterName: "B\xFCrgermeister Retrosum"
