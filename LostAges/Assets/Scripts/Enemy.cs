@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public DynamicCone dynCone; // Referenz auf den DynamicCone-Script
 
     private float aggroTimeRemaining = 0f;
-    private const float aggroDuration = 4f;
+    private const float aggroDuration = 6f;
 
 
     void Start()

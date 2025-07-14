@@ -572,7 +572,7 @@ public class storyManager : MonoBehaviour
         {
             RunenEntziffernUIPanel.SetActive(false);
         }
-        if (checkStoryID("K1_11") || checkStoryID("K1_13") || checkStoryID("K1_14") || checkStoryID("K1_15") || checkStoryID("K1_12") || checkStoryID("K1_done"))
+        if (checkStoryID("K1_11") || checkStoryID("K1_13") || checkStoryID("K1_14") || checkStoryID("K1_15") || checkStoryID("K1_12"))// || checkStoryID("K1_done"))
         {
             schriftrolleUI.gameObject.SetActive(true);
         }

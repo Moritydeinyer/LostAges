@@ -287,7 +287,7 @@ public class saveManager : MonoBehaviour
         switch (action)
         {
             case 0: //delete 
-                if (gameDataNew != null && (gameDataNew.id != null || gameDataNew.id != ""))
+                if (gameDataNew != null && !string.IsNullOrEmpty(gameDataNew.id))
                 {
                     string data = "{\"authentication_id\":\"" + authentication_id + "\", \"spielstand_id\":\"delete\", \"deleteID\":\"" + gameDataNew.id + "\"}";
                     AddToQueue("spielstand", gameDataNew.id, data);
