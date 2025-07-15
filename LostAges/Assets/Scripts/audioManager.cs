@@ -10,6 +10,9 @@ public class audioManager : MonoBehaviour
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioSource creditMusic;
 
+    [SerializeField] private AudioSource backTBC;
+    [SerializeField] private AudioSource backChronosEndfight;
+
     [Header("SFX SRC")]
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private AudioMixerGroup sfxMixerGroup;
@@ -61,6 +64,34 @@ public class audioManager : MonoBehaviour
                     init = false;
                     StartCoroutine(FadeTrack(creditMusic));
                 }
+            } 
+            else if (escMC.storyManager.checkStoryID("K2_52"))
+            {
+                if (backTBC != null && !backTBC.isPlaying)
+                {
+                    backTBC.outputAudioMixerGroup = sfxMixerGroup;
+                    backTBC.playOnAwake = false;
+                    backTBC.loop = true;
+                    backTBC.Play();
+                }
+            }
+            else if (escMC.storyManager.checkStoryIDgraterThan("8016"))
+            {
+                if (backChronosEndfight != null && !backChronosEndfight.isPlaying)
+                {
+                    backChronosEndfight.outputAudioMixerGroup = sfxMixerGroup;
+                    backChronosEndfight.playOnAwake = false;
+                    backChronosEndfight.loop = true;
+                    backChronosEndfight.Play();
+                }
+            }
+            else if (backChronosEndfight != null && backChronosEndfight.isPlaying)
+            {
+                backChronosEndfight.Stop();
+            }
+            else if (backTBC != null && backTBC.isPlaying)
+            {
+                backTBC.Stop();
             }
             if (playWalkSound && !sfxPlayerWalk.isPlaying)
             {
