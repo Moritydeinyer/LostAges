@@ -720,7 +720,9 @@ namespace Cainos.PixelArtTopDown_Basic
         {
             if (enemy.attackable)
                 {
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                Vector2 playerPos = new Vector2(transform.position.x, transform.position.y);
+                Vector2 enemyPos  = new Vector2(enemy.transform.position.x, enemy.transform.position.y);
+                float distanceToEnemy = Vector2.Distance(playerPos, enemyPos);
                 if (distanceToEnemy <= damageRange)
                 {
                     enemy.health -= attackDamage;

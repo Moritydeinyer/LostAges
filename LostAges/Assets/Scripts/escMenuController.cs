@@ -300,14 +300,14 @@ public class escMenuController : MonoBehaviour
         startPanel.gameObject.SetActive(false);
         selectGamePanel.gameObject.SetActive(false);
         insertGameNamePanel.gameObject.SetActive(false);
-        loggedOutPanel.gameObject.SetActive(false); //DEBUG build true
+        loggedOutPanel.gameObject.SetActive(true); //DEBUG build true
         taskPanel.gameObject.SetActive(false);
         UIminiMapPanel.gameObject.SetActive(false); //DEBUG build false
         UIinteractionPanel.gameObject.SetActive(false);
         //UIdialogOverlayPanel.gameObject.SetActive(false);
         storyManager.enabled = false;   //DEBUG build
         active = false;
-        playerController.act = true; //DEBUG build false
+        playerController.act = false; //DEBUG build false
         backGameBtn.onClick.AddListener(backGameListener);
         quitSaveBtn.onClick.AddListener(quitSaveListenerGateway);
         loadDebugBtn.onClick.AddListener(loadDebugListener);
