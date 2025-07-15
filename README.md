@@ -12,7 +12,6 @@ Parts of the dialogue and graphics were created using AI tools (see below).
 We are **GymPeg Studios**, a student game development team based in Bavaria, Germany.  
 Follow our progress and future projects:
 
-- 🌍 Website: [https://gympeg-studios.de](https://gympeg-studios.de)
 - 📸 Instagram: [@gympeg.studios](https://www.instagram.com/gympegstudios/)
 
 ---
