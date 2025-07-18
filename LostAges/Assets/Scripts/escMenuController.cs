@@ -222,8 +222,7 @@ public class escMenuController : MonoBehaviour
     private bool canPressMKey = true;
     public jsonGameData gameData = new jsonGameData();
     public jsonPlayerData playerData = new jsonPlayerData();
-    public string authentication_id = "gh45";                           // DEBUG
-    //public string authentication_id = "CfdR2IGZEQZUoApxK93Sm5nvLBUx";   // DEBUG (google)
+    public string authentication_id;                      
     private PlayerProfile playerProfile;
     private int y_rot = -45784578;
 
@@ -412,7 +411,6 @@ public class escMenuController : MonoBehaviour
 
 
         version();
-        sync();
         tryAutoLogin();
         Debug.LogWarning("Esc Menu Controller started");
         showSchriftrolle1Btn.onClick.AddListener(() =>
@@ -472,7 +470,7 @@ public class escMenuController : MonoBehaviour
     async private void tryAutoLogin()
     {
         playerData = await saveManager.getPlayerData(null);
-        if (playerData.id >= 1 && playerData.authentication_id != null && playerData.authentication_id != "")
+        if (playerData.authentication_id != null && playerData.authentication_id != "")
         {
             authentication_id = playerData.authentication_id;
             loggedOutPanel.gameObject.SetActive(false);
@@ -481,10 +479,11 @@ public class escMenuController : MonoBehaviour
             playBtn.Select();
             loadVolume();
             loadBindings();
+            sync();
         }
         else
         {
-            
+
         }
     }
 
@@ -969,6 +968,37 @@ public class escMenuController : MonoBehaviour
         Debug.Log("Signed in: " + profile.playerInfo.Id + "\n" + profile.playerInfo.Username + "\n" + profile.playerInfo.CreatedAt + "\n" + profile.playerInfo.GetType());
         authentication_id = profile.playerInfo.Id;
         playerData = await saveManager.getPlayerData(authentication_id);
+        Debug.LogError(playerData);
+        if (playerData == null)
+        {
+            Debug.LogWarning("Server nicht erreichbar - Lokale PlayerData wird neu erstellt.");
+            
+            playerData = new jsonPlayerData
+            {
+                authentication_id = authentication_id,
+                username = profile.playerInfo.Username ?? "",
+                games = "",
+                settingsVolume = 0,
+                bindings = "",
+                moskito = "",
+                diagnostics = "0",
+                autosave = "500"
+            };
+
+            saveManager.SavePlayerDataLocally(playerData);
+
+            var formattedSettings = new FormattedPlayerSettings
+            {
+                authentication_id = playerData.authentication_id,
+                volume = playerData.settingsVolume.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture).Replace(".", ","),
+                bindings = playerData.bindings,
+                diagnostics = playerData.diagnostics,
+                autosave = playerData.autosave
+            };
+
+            saveManager.AddToQueue("account", "0", JsonConvert.SerializeObject(formattedSettings));
+        }
+
         loggedOutPanel.gameObject.SetActive(false);
         startPanel.gameObject.SetActive(true);
         audioManager.StartMoskitoSFX();

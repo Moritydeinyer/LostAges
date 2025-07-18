@@ -75,26 +75,27 @@ public class saveManager : MonoBehaviour
     public async Task<jsonPlayerData> getPlayerData(string authentication_id)
     {
         jsonPlayerData playerData = LoadPlayerDataLocally();
+        //Debug.LogWarning(playerData.authentication_id);
         if (playerData != null && (authentication_id == null || authentication_id == ""))
-        { 
+        {
             authentication_id = playerData.authentication_id; // Use the stored authentication ID if available
         }
         try
-            {
-                string data = "{\"authentication_id\":\"" + authentication_id + "\"}";
-                HttpClient client = new HttpClient();
-                StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", queryString);
-                string responseBody = await response.Content.ReadAsStringAsync();
-                playerData = JsonConvert.DeserializeObject<jsonPlayerData>(responseBody);
-                playerData.authentication_id = authentication_id; // Set the authentication ID
-                SavePlayerDataLocally(playerData);
-                return playerData;
-            }
-            catch (Exception e)
-            {
-                return playerData;
-            }
+        {
+            string data = "{\"authentication_id\":\"" + authentication_id + "\"}";
+            HttpClient client = new HttpClient();
+            StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", queryString);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            playerData = JsonConvert.DeserializeObject<jsonPlayerData>(responseBody);
+            playerData.authentication_id = authentication_id; // Set the authentication ID
+            SavePlayerDataLocally(playerData);
+            return playerData;
+        }
+        catch (Exception e)
+        {
+            return playerData;
+        }
     }
 
     public async Task<jsonGameData> getSpielstand(string id, string authentication_id)
@@ -129,6 +130,10 @@ public class saveManager : MonoBehaviour
 
         string json = File.ReadAllText(path);
         jsonPlayerData playerData = JsonConvert.DeserializeObject<jsonPlayerData>(json);
+
+        if (playerData.authentication_id == null || playerData.authentication_id == "")
+            playerData = null;
+
         return playerData;
     }
 
@@ -222,8 +227,39 @@ public class saveManager : MonoBehaviour
                             }
                             break;
                         case "account":
-                            response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/update_account", content);
+                            var authObj = JsonConvert.DeserializeObject<FormattedPlayerSettings>(action.jsonData);
+                            var authCheck = new StringContent("{\"authentication_id\":\"" + authObj.authentication_id + "\"}", Encoding.UTF8, "application/json");
+
+                            try
+                            {
+                                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", authCheck);
+                                string createBody = await response.Content.ReadAsStringAsync();
+                                Debug.Log("Account creation/check response: " + createBody);
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.LogWarning("Account-Erstellung/Check fehlgeschlagen: " + e.Message);
+                                newQueue.Add(action);
+                                continue;
+                            }
+
+                            try
+                            {
+                                var updateContent = new StringContent(action.jsonData, Encoding.UTF8, "application/json");
+                                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/update_account", updateContent);
+                                if (!response.IsSuccessStatusCode)
+                                {
+                                    Debug.LogWarning("Update für Account fehlgeschlagen.");
+                                    newQueue.Add(action);
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.LogWarning("Account-Update fehlgeschlagen: " + e.Message);
+                                newQueue.Add(action);
+                            }
                             break;
+
                         default:
                             throw new InvalidOperationException("Unknown action type: " + action.actionType);
                     }
