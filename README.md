@@ -13,6 +13,7 @@ We are **GymPeg Studios**, a student game development team based in Bavaria, Ger
 Follow our progress and future projects:
 
 - 📸 Instagram: [@gympeg.studios](https://www.instagram.com/gympegstudios/)
+- Website: [gympeg-studios.ddns.net](https://gympeg-studios.ddns.net/)
 
 ---
 
