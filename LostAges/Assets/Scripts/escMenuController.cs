@@ -183,6 +183,8 @@ public class escMenuController : MonoBehaviour
     [SerializeField] private Button playBtnII;
     [SerializeField] private TMP_InputField gameNameInput;
     [SerializeField] private Transform insertGameNamePanel;
+    [SerializeField] public GameObject OSK;
+    [SerializeField] private Button oskEnter;
 
     [Header("Logged Out Panel")]
     [SerializeField] private Button loginBtn;
@@ -642,37 +644,47 @@ public class escMenuController : MonoBehaviour
         return null;
     }
 
+    private GameObject lastSelectedObject;
 
     void FixedUpdate()
     {
         //DEBUG TEST START
-        // if (Input.GetKeyDown(KeyCode.L))
-        // {
-        //     gameData.story_id = "10";
-        //     //FadeInOut();
-        //     //UIminiMapPanel.gameObject.SetActive(false);
-        //     //UIdialogOverlayPanel.gameObject.SetActive(false);
-        //     //gameData.story_id = "999";
-        //     //EventSystem.current.SetSelectedGameObject(showSchriftrolle1Btn.gameObject);
-        //     //Debug.Log(playerTransform.position.y + " " + playerController.K2K2Trigger.transform.position.y);
-        //     //Debug.Log(gameData.story_id);
-        //     //
-        //     }
-        // if (Input.GetKeyDown(KeyCode.C))
-        // {
-        //     Debug.LogError(gameData.story_id);
-        //     //Debug.Log(actions.SaveBindingOverridesAsJson());    
-        //     //Debug.Log(gameData.respw + "\nRestoring Respwn Point");
-        //     //float x = float.Parse(gameData.respw.Split(';')[0].Replace(",", "."), CultureInfo.InvariantCulture);
-        //     //float y = float.Parse(gameData.respw.Split(';')[1].Replace(",", "."), CultureInfo.InvariantCulture);
-        //     //playerTransform.position = new Vector3(x, y, 0);
-        //     //gameData.story_id = "6";       
-        //     //storyManager.kampfTutorialEnemy.gameObject.SetActive(false);   
-        //     //Debug.LogWarning(saveManager.LocalPath("test"));
-        //     //playerTransform.position = storyManager.SPTBC1.transform.position;
-        // }
+
         //DEBUG TEST ENDE
 
+        if (insertGameNamePanel.gameObject.activeSelf)
+        {
+            if (useController)
+            {
+                OSK.gameObject.SetActive(true);
+                RectTransform rt = gameNameInput.GetComponent<RectTransform>();
+                Vector2 pos = rt.anchoredPosition;
+                pos.y = 205f;
+                rt.anchoredPosition = pos;
+                if (lastSelectedObject != oskEnter.gameObject)
+                {
+                    oskEnter.Select();
+                    lastSelectedObject = oskEnter.gameObject;
+                }
+            }
+            else
+            {
+                RectTransform rt = gameNameInput.GetComponent<RectTransform>();
+                Vector2 pos = rt.anchoredPosition;
+                pos.y = 41f;
+                rt.anchoredPosition = pos;
+                OSK.gameObject.SetActive(false);
+                if (lastSelectedObject != gameNameInput.gameObject)
+                {
+                    gameNameInput.Select();
+                    lastSelectedObject = gameNameInput.gameObject;
+                }
+            }
+        }
+        else
+        {
+            lastSelectedObject = null; 
+        }
 
         if (Gamepad.current != null)
         {
@@ -1091,7 +1103,7 @@ public class escMenuController : MonoBehaviour
         checkName();
     }
 
-    private void saveGameNameListener()
+    public void saveGameNameListener()
     {
         setPlayerPosition();
         insertGameNamePanel.gameObject.SetActive(false);
@@ -1236,12 +1248,19 @@ public class escMenuController : MonoBehaviour
     private IEnumerator HandleEscapeInput()
     {
         canPressEscKey = false;
+        if (storyManager.RunenEntziffernUIPanel.gameObject.activeSelf)
+        {
+            storyManager.RunenEntziffernUIPanel.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            canPressEscKey = true; 
+            yield break;
+        }
         if (PanelSchriftrolle1.gameObject.activeSelf || PanelSchriftrolle2.gameObject.activeSelf)
         {
             PanelSchriftrolle1.SetActive(false);
             PanelSchriftrolle2.SetActive(false);
             yield return new WaitForSeconds(0.5f);
-            canPressEscKey = true; 
+            canPressEscKey = true;
             yield break;
         }
         if (escMenuPanel.gameObject.activeSelf || playerController.act)

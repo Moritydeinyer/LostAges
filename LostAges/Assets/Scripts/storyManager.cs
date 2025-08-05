@@ -19,6 +19,7 @@ using UnityEngine.UIElements;
 public class storyManager : MonoBehaviour
 {
 
+    [SerializeField] private GameObject OSK;
     [SerializeField] private escMenuController escMC;
     [SerializeField] private GameObject titleScreenPanel;
     [SerializeField] private TextMeshProUGUI titleScreenPanelTxt1;
@@ -177,7 +178,7 @@ public class storyManager : MonoBehaviour
         [SerializeField] private GameObject schriftrolle;
         [SerializeField] private GameObject schriftrolleUI;
         [SerializeField] private Enemy Monster;
-        [SerializeField] private GameObject RunenEntziffernUIPanel;
+        [SerializeField] public GameObject RunenEntziffernUIPanel;
         [SerializeField] private UnityEngine.UI.Image[] runeImages;
         [SerializeField] private RuneDatabase runeDatabase;
         [SerializeField] private TMP_InputField runeInputField;
@@ -185,6 +186,7 @@ public class storyManager : MonoBehaviour
         [SerializeField] private GameObject geschafftAnzeige;
         [SerializeField] private GameObject nichtGeschafftAnzeige;
         [SerializeField] private GameObject pflanze;
+        [SerializeField] private UnityEngine.UI.Button osk_enter;
 
     [Header("K2")]
         [Header("Verhaftung")]
@@ -241,6 +243,7 @@ public class storyManager : MonoBehaviour
         [SerializeField] public GameObject AfterWorldMap;
         [SerializeField] public GameObject SPAfterWorld;
     public float h, s, v;
+    private GameObject lastSelectedUIObject;
 
 
     void Start()
@@ -556,22 +559,53 @@ public class storyManager : MonoBehaviour
             Monster.gameObject.SetActive(false);
         }
 
+
+
+
+
         if (checkStoryID("K1_13"))
         {
-            RunenEntziffernUIPanel.SetActive(true);
-            if (runeInputField.isFocused)
+            if (escMC.useController)
             {
-                escMC.playerController.act = false;
+                RectTransform rt = runeInputField.GetComponent<RectTransform>();
+                Vector2 pos = rt.anchoredPosition;
+                pos.y = 388f;
+                rt.anchoredPosition = pos;
+                if (!OSK.activeSelf)
+                    OSK.SetActive(true);
+
+                if (lastSelectedUIObject != osk_enter.gameObject)
+                {
+                    osk_enter.Select();
+                    lastSelectedUIObject = osk_enter.gameObject;
+                }
             }
             else
             {
-                escMC.playerController.act = true;
+                RectTransform rt = runeInputField.GetComponent<RectTransform>();
+                Vector2 pos = rt.anchoredPosition;
+                pos.y = -35f;
+                rt.anchoredPosition = pos;
+                runeInputField.gameObject.transform.position = new Vector3(0, -35, 0);
+                if (OSK.activeSelf)
+                    OSK.SetActive(false);
+                lastSelectedUIObject = null;
             }
         }
         else
         {
-            RunenEntziffernUIPanel.SetActive(false);
+            if (RunenEntziffernUIPanel.activeSelf)
+                RunenEntziffernUIPanel.SetActive(false);
+
+            if (OSK.activeSelf)
+                OSK.SetActive(false);
+
+            lastSelectedUIObject = null; 
         }
+
+        if (RunenEntziffernUIPanel.activeSelf) {escMC.playerController.act = false; }
+        else { escMC.playerController.act = true; }
+
         if (checkStoryID("K1_11") || checkStoryID("K1_13") || checkStoryID("K1_14") || checkStoryID("K1_15") || checkStoryID("K1_12"))// || checkStoryID("K1_done"))
         {
             schriftrolleUI.gameObject.SetActive(true);
@@ -1685,7 +1719,7 @@ public class storyManager : MonoBehaviour
         addStoryID("K1_10");
     }
 
-    void SubmitRuneInput()
+    public void SubmitRuneInput()
     {
         if (checkStoryID("K1_13"))
         {

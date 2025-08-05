@@ -16,6 +16,7 @@ These assets may only be used within Unity projects and may not be redistributed
 - **Pixel Art Top Down – Basic** by Cainos – Published May 23, 2025  
 - **Bandits – Pixel Art** by Sven Thole – Published August 17, 2020  
 - **A* Pathfinding Project (Free Version)** by Aron Granberg – Published November 6, 2021
+- **OSK OnScreenKeyboard Rus/Eng** by FiveOK - Published July 2, 2019
 
 ---
 

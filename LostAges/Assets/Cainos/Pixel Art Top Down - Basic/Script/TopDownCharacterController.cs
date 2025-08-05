@@ -534,9 +534,14 @@ namespace Cainos.PixelArtTopDown_Basic
                         escMC.storyManager.Kugel2UI.SetActive(true);
                     }
                     if (collision.gameObject.name.Contains("Ruinenwand") && escMC.storyManager.checkStoryID("K1_12"))
-                    { 
+                    {
                         escMC.storyManager.addStoryID("K1_13");
                         escMC.storyManager.rmStoryID("K1_12");
+                        escMC.storyManager.RunenEntziffernUIPanel.SetActive(true);
+                    }
+                    if (collision.gameObject.name.Contains("Ruinenwand") && escMC.storyManager.checkStoryID("K1_13"))
+                    {
+                        escMC.storyManager.RunenEntziffernUIPanel.SetActive(true);
                     }
                     // DEBUG bedingung endfight 7000
                     if (collision.gameObject.name.Contains("CHRONOS") && escMC.storyManager.checkStoryID("7999"))
