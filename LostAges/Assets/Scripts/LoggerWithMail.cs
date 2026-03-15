@@ -91,7 +91,7 @@ public class Logger : MonoBehaviour
                 {
                     var queryString = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                    HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/diagnostics", queryString);
+                    HttpResponseMessage response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/diagnostics", queryString);
                     string responseBody = await response.Content.ReadAsStringAsync();
 
                     Debug.Log("[log] Server Response: " + response.StatusCode + " - " + responseBody);

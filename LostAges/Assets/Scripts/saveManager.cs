@@ -85,7 +85,7 @@ public class saveManager : MonoBehaviour
             string data = "{\"authentication_id\":\"" + authentication_id + "\"}";
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", queryString);
+            HttpResponseMessage response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/get_user_data", queryString);
             string responseBody = await response.Content.ReadAsStringAsync();
             playerData = JsonConvert.DeserializeObject<jsonPlayerData>(responseBody);
             playerData.authentication_id = authentication_id; // Set the authentication ID
@@ -106,7 +106,7 @@ public class saveManager : MonoBehaviour
             string data = "{\"spielstand_id\":\"" + id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_spielstand", queryString);
+            HttpResponseMessage response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/get_spielstand", queryString);
             string responseBody = await response.Content.ReadAsStringAsync();
             gameData = JsonConvert.DeserializeObject<jsonGameData>(responseBody);
             SaveGameDataLocally(gameData);
@@ -186,7 +186,7 @@ public class saveManager : MonoBehaviour
                         case "spielstand":
                             string oldPath = LocalPath("gamedata" + action.id + ".json");
 
-                            response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/save_spielstand", content);
+                            response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/save_spielstand", content);
                             string responseBody = await response.Content.ReadAsStringAsync();
                             Debug.Log(responseBody);
 
@@ -232,7 +232,7 @@ public class saveManager : MonoBehaviour
 
                             try
                             {
-                                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_user_data", authCheck);
+                                response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/get_user_data", authCheck);
                                 string createBody = await response.Content.ReadAsStringAsync();
                                 Debug.Log("Account creation/check response: " + createBody);
                             }
@@ -246,7 +246,7 @@ public class saveManager : MonoBehaviour
                             try
                             {
                                 var updateContent = new StringContent(action.jsonData, Encoding.UTF8, "application/json");
-                                response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/update_account", updateContent);
+                                response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/update_account", updateContent);
                                 if (!response.IsSuccessStatusCode)
                                 {
                                     Debug.LogWarning("Update für Account fehlgeschlagen.");

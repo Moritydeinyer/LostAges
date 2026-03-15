@@ -456,7 +456,7 @@ public class escMenuController : MonoBehaviour
     async private void version()
     {
         HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync("https://iab-services.ddns.net/api/gta_speichersdorf/version");
+        HttpResponseMessage response = await client.GetAsync("https://api.pagerevival.de/api/gta_speichersdorf/version");
         string responseBody = await response.Content.ReadAsStringAsync();
         if (!responseBody.Contains("b737ca7ee563ae80e457bb3d1dfe64edd2b4c015a8f88b6f87d5c113b68897fd"))
         {
@@ -541,7 +541,7 @@ public class escMenuController : MonoBehaviour
             string data = "{\"quantity\":\"" + quantity + "\",\"authentication_id\":\"" + authentication_id + "\",\"price\":\"" + price + "\",\"item_id\":\"" + item + "\"}";                              
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/request_payment", queryString);
+            HttpResponseMessage response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/request_payment", queryString);
             string responseBody = await response.Content.ReadAsStringAsync();
             Debug.Log(responseBody);
             paymentData = JsonConvert.DeserializeObject<requestPaymentData>(responseBody);
@@ -608,7 +608,7 @@ public class escMenuController : MonoBehaviour
                 Debug.Log($"Zahlung bestätigt! PaymentId: {paymentId}, PayerId: {payerId}");
                 exec_payment(paymentId, payerId, token);
                 response.StatusCode = 302; 
-                response.Headers["Location"] = "https://iab-services.ddns.net/api/gta_speichersdorf/payment/success"; 
+                response.Headers["Location"] = "https://api.pagerevival.de/api/gta_speichersdorf/payment/success"; 
              }
             response.Close();
         }
@@ -622,7 +622,7 @@ public class escMenuController : MonoBehaviour
             string data = "{\"paymentID\":\"" + paymentId + "\",\"payerID\":\"" + payerId + "\",\"token\":\"" + token + "\",\"authentication_id\":\"" + authentication_id + "\"}";
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage res = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/exec_payment", queryString);
+            HttpResponseMessage res = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/exec_payment", queryString);
             string responseBody = await res.Content.ReadAsStringAsync();
             Debug.Log(responseBody);
         } 
@@ -1557,7 +1557,7 @@ public class escMenuController : MonoBehaviour
             string data = "{\"spielstand_id\":\"" + game_id + "\",\"authentication_id\":\"" + authentication_id + "\"}";
             HttpClient client = new HttpClient();
             StringContent queryString = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync("https://iab-services.ddns.net/api/gta_speichersdorf/get_spielstand", queryString);
+            HttpResponseMessage response = await client.PostAsync("https://api.pagerevival.de/api/gta_speichersdorf/get_spielstand", queryString);
             string responseBody = await response.Content.ReadAsStringAsync();
             gameData = JsonConvert.DeserializeObject<jsonGameData>(responseBody);
 
