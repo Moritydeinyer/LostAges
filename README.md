@@ -1,63 +1,54 @@
-# 🎮 LostAges (2025) – by GymPeg Studios
+# LostAges
 
-Welcome to the official repository of **LostAges**, an indie game developed by **GymPeg Studios**.
+A 2D top-down adventure game built with Unity by **GymPeg Studios** — a student development team based in Bavaria, Germany.
 
-This is a 2D top-down adventure game built with Unity, featuring pixel art graphics, a branching dialogue system, AI pathfinding, and original music & sound design.  
-Parts of the dialogue and graphics were created using AI tools (see below).
-
----
-
-## 🌐 About Us
-
-We are **GymPeg Studios**, a student game development team based in Bavaria, Germany.  
-Follow our progress and future projects:
-
-- 📸 Instagram: [@gympeg.studios](https://www.instagram.com/gympegstudios/)
-- Website: [gympeg-studios.ddns.net](https://gympeg-studios.ddns.net/)
+The game features pixel art graphics, branching dialogue, AI-driven pathfinding, and original music and sound design. Select dialogue and visual assets were created with AI tools (see [Credits](./CREDITS.md)).
 
 ---
 
-## 📦 Project Structure
+## Repository Structure
 
-- `Assets/Scripts` – Core C# logic and game mechanics  
-- `Assets/Graphics` – Graphics 
-- `Assets/SFX` – Music and sound effects  
-
----
-
-## ⚠️ Licensing
-
-- All **original source code** is licensed under the **MIT License** (see [`LICENSE.txt`](./LICENSE.txt)).
-- All **third-party assets** are listed with sources and licenses in [`CREDITS.md`](./CREDITS.md).
-- Assets from the Unity Asset Store are used under the **Extension Asset License** – redistribution is not allowed.
+| Path | Contents |
+|---|---|
+| `Assets/Scripts` | Core C# game logic and mechanics |
+| `Assets/Graphics` | Sprite sheets, tilesets, UI assets |
+| `Assets/SFX` | Music and sound effects |
 
 ---
 
-## 🤖 AI-Generated Content
+## Getting Started
 
-- **Dialogues**: Generated with [ChatGPT by OpenAI](https://openai.com/chatgpt)  
-- **Graphics**: Some assets created using [Layer.ai](https://www.layer.ai/)  
-All AI-generated content was created within the terms of use of the respective platforms and is exclusively used in this project.
+**Run the game**
+Download the latest release from the [Releases page](https://github.com/Moritydeinyer/LostAges/releases) and run `LostAges.exe` — no installation required.
 
----
-
-## 🚀 Getting Started
-
-1. Open the project in **Unity 2022.3 LTS** (or newer)
-2. Install dependencies if required (see Package Manager)
-3. Hit ▶️ and explore the world of LostAges!
-
-**OR** 
-
-Download the newest Release Executable.
+**Open in Unity**
+1. Clone the repository
+2. Open in Unity 2022.3 LTS or newer
+3. Resolve any missing packages via the Package Manager
+4. Press Play
 
 ---
 
-## 📝 Contact
+## Licensing
 
-For collaboration or questions, contact us via DM on Instagram.  
-We’re always happy to connect with other creators!
+- **Source code** — MIT License (see [`LICENSE.txt`](./LICENSE.txt))
+- **Third-party assets** — Individual licenses listed in [`CREDITS.md`](./CREDITS.md)
+- **Unity Asset Store assets** — Used under the Unity Extension Asset License; redistribution is not permitted
 
 ---
 
+## AI-Generated Content
 
+Certain assets were produced with external AI tools:
+
+- **Dialogue** — [ChatGPT](https://openai.com/chatgpt) (OpenAI)
+- **Graphics** — [Layer.ai](https://www.layer.ai/)
+
+All generated content was produced within the respective platform terms of use and is used exclusively in this project.
+
+---
+
+## Contact
+
+Instagram: [@gympeg.studios](https://www.instagram.com/gympegstudios/)  
+Website: [gympeg-studios.ddns.net](https://gympeg-studios.ddns.net/)
